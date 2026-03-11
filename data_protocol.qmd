@@ -80,8 +80,21 @@ This way each track's direction is visible via the colour.
 
 To make automatic extraction of structural parameters possible and simplify later analyses, the TSQ tree and shrub positions were labelled manually within each scan.
 For this the software **CloudCompare** was used.
-Specifically we used the point clouds, tracks, and videos to 
+Specifically, we used the point clouds, tracks, and videos to manually "find" the trees and shrubs of each TSQ in the respective scan.
+We then selected a point at the central base of each existing tree/shrub.
+We also did this for dead trees or shrubs.
+On control TSQs without shrubs and all other TSQs a "center" point was selected on the ground, marking where a shrub would theoretically stand.
+In case of missing trees, no point was selected. We then saved the selected points in a seperate `.txt` file with the following format:
 
-Since the raw exported point cloud also encompasses the vicinity of each TSQ, the portion of 
+```
+T22_0704_tree1_ElGl,-0.699999988079,0.180000007153,0.419999986887
+T22_0805_tree3_CaFa,0.209999993443,1.47000002861,0.680000007153
+T22_0804_tree4_ElGl,0.560000002384,0.259999990463,0.680000007153
+T22_0704_shrub_DiBu,-0.070000000298,0.759999990463,0.490000009537
+T22_0704_center,-0.070000000298,0.759999990463,0.490000009537
+T22_0704_north,-0.070000000298,0.759999990463,0.490000009537
+```
+
+The "north" (or other cardinal direction) point marks a point that together with the "center" point will form a vector describing the respective compass-direction.
 
 # Structural parameter extraction
