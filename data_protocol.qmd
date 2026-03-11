@@ -1,0 +1,81 @@
+---
+title: "TSQ structural data protocol"
+author: "Alexander Täuber"
+format:
+  html:
+    number-sections: true
+    toc: true
+    toc-depth: 1
+project:
+    execute-dir: project
+execute:
+  warning: false
+  message: false
+---
+
+# About
+
+This is the protocol for the collection and processing of the **structural data** of the **tree species quartets (TSQs)** collected via personal laser scanning (PLS).
+This data has been collected in the summers of 2023 and 2024 by **Tama Ray**, **Tobias Käcks**, and **Alexander Täuber**.
+The structural data analysis including this repository and documentation was created by Alexander Täuber.
+In case of questions please [email](mailto:alexander.taeuber@idiv.de) me, or use this repositories [Issues]().
+
+# Data summary
+
+**Insert small table with available data**
+
+# Raw data collection
+
+The raw data for the TSQs of Site A was collected in August and September of 2023 by Tama Ray and Tobias Käcks.
+The data of Site B was collected in August of 2024 by Alexander Täuber.
+
+In total **X** scans are available for ....
+
+## General info
+
+The data collected are point clouds gathered via light detection and ranging (LiDAR).
+For this a **ZEB Horizon RT** personal laser scanner of the manufacturer **GeoSLAM** was used.
+The device was equipped with a small action camera, which recorded video during each scan (`.mp4`).
+The video files of the scans on Site A (2023) are only partly available, as some were lost due to data corruption.
+Those of Site B (2024) are fully available.
+No registration marks were used in either year.
+While this could have improved the speed of the registration and made the tree/shrub labelling much easier, it also drastically reduced the time-to-scan of each TSQ (no setting up of targets).
+The time-to-scan was prioritized in this campaign due to limited fieldwork time.
+
+## Scanning Track
+
+In both years the scanner was carried through the TSQ by hand as intended for a PLS.
+The walked route (from here on referred to as "*track*") is recorded in three dimensions (3D).
+The track was not consistent across TSQs because terrain was partly difficult to traverse safely.
+Additionally it made sense to adapt the track to the canopy structure of the focal trees/shrubs in order to achieve an optimal point cloud density.
+The tracks are available as polygone file formats (`.ply`).
+
+## Compass alignment
+
+The **ZEB-Horizon** does not have an internal compass.
+For Site A (2023) the scans were not compass-oriented.
+For Site B (2024) the scans have been manually compass-oriented.
+This was achieved by placing a compass parralelly to the PLS-scanner at the beginning of each scan, in view of the action camera.
+With this information the scans of Site A could be compass-oriented to a **precision of roughly 10°**.
+
+# Point cloud processing
+
+## Raw data extraction
+
+The **ZEB-Horizon** is equipped with a data logger that was read out after each field day.
+For this and the point cloud extraction the software **GeoSLAM Hub** was utilized.
+Here, the raw scan was registered with the track information.
+The resulting point clouds were inspected roughly to determine if a re-scan was necessary on each afternoon/evening of the same day.
+In the same software also, we exported the point clouds in `.laz` format and the tracks in `.ply` format.
+The latter were exported with a RGB field containing info on the track time.
+This way each track's direction is visible via the colour.
+
+## TSQ tree/shrub labelling
+
+To make automatic extraction of structural parameters possible and simplify later analyses, the TSQ tree and shrub positions were labelled manually within each scan.
+For this the software **CloudCompare** was used.
+Specifically we used the point clouds, tracks, and videos to 
+
+Since the raw exported point cloud also encompasses the vicinity of each TSQ, the portion of 
+
+# Structural parameter extraction
