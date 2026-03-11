@@ -6,6 +6,12 @@ format:
     number-sections: true
     toc: true
     toc-depth: 1
+  pdf:
+    number-sections: true
+    toc: true
+    toc-depth: 1
+    sansfont: "Arial"
+    mainfont: "Times New Roman"
 project:
     execute-dir: project
 execute:
