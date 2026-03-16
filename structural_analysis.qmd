@@ -1,0 +1,34 @@
+---
+title: "Network analysis simulation"
+author: "Alexander Täuber"
+format:
+  html:
+    css: styles.css
+    self-contained: true
+    toc: true
+    number-sections: true
+fig-width: 7
+fig-height: 7
+project:
+    execute-dir: project
+execute:
+  warning: false
+  message: false
+---
+
+```{r}
+source(here::here("scripts/_load_all.R"))
+
+manifest <- make_manifest()
+manifest <- extract_dtms(manifest)
+manifest <- preprocess_clouds(manifest)
+
+
+tst_p <- "C:/Users/alex-work/Desktop/repos/tsq_structure_new/data/processed/2023-08-12_02-51-50_A_F35_0306_dtm_r0.3.ply"
+tst <- Rvcg::vcgPlyRead(tst_p)
+rgl::plot3d(tst)
+tst2 <- clip_mesh(tst, 5)
+rgl::plot3d(tst2)
+Rvcg::vcgPlyWrite(tst, "tst.ply")
+Rvcg::vcgPlyWrite(tst2, "tst2.ply")
+```
