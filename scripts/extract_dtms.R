@@ -1,26 +1,15 @@
 extract_dtms <- function(
   manifest,
-  out_dir = "data/processed",
-  dtm_dim = 2.58 + 10,
-  dtm_res = 0.3,
   force = FALSE
 ) {
-  out_dir <- out_dir |> here::here()
+  dtm_dim <- manifest$params$dtmdim
+  dtm_res <- manifest$params$dtmres
 
-  fs::dir_create(out_dir)
-
-  manifest <- manifest |>
-    dplyr::mutate(
-      dtm_path = cloud_path |>
-        fs::path_file() |>
-        fs::path_ext_remove() |>
-        (\(s) fs::path(out_dir, paste0(s, "_dtm_r", dtm_res), ext = "ply"))()
-    )
-  existing_files <- fs::dir_ls(out_dir, glob = "*.ply")
   if (force) {
-    to_process <- manifest
+    to_process <- manifest$manifest
   } else {
-    to_process <- dplyr::filter(manifest, !dtm_path %in% existing_files)
+    to_process <- manifest$manifest |>
+      dplyr::filter(!fs::file_exists(dtm_path))
   }
 
   if (nrow(to_process) == 0) {
@@ -28,7 +17,7 @@ extract_dtms <- function(
     return(manifest)
   }
 
-  if (!force && nrow(to_process) < nrow(manifest)) {
+  if (!force && nrow(to_process) < nrow(manifest$manifest)) {
     message(
       "Found DTMs already extracted. Only ", nrow(to_process),
       " new files will be processed. Use force = TRUE to reprocess"
@@ -38,32 +27,21 @@ extract_dtms <- function(
   manifest_out <- to_process |>
     dplyr::mutate(
       res = purrr::pmap(
-        list(year, cloud_path, pois, dtm_path),
-        function(year, cloud_path, pois, dtm_path) {
+        list(year, center_x, center_y, p2_dir, p2_x, p2_y, cloud_path, dtm_path),
+        function(year, center_x, center_y, p2_dir, p2_x, p2_y, cloud_path, dtm_path) {
           cloud <- invisible(rlas::read.las(cloud_path, "xyz")) |>
             coi::as_pt_cld()
 
-          center <- pois |>
-            dplyr::filter(type %in% c("shrub", "center")) |>
-            # This makes sure that when both shrub and center are present
-            # center is preferred ("center" sorts before "shrub" alphabetically)
-            dplyr::arrange(type) |>
-            dplyr::slice_head(n = 1) |>
-            dplyr::select(x, y, z) |>
-            unlist()
+          center <- c(center_x, center_y)
 
-          if (year == 2024) {
-            compass_row <- pois |>
-              dplyr::filter(type %in% c("north", "east", "south", "west"))
-            heading <- dplyr::pull(compass_row, type)
-            p2 <- compass_row |>
-              dplyr::select(x, y, z) |>
-              unlist()
+
+          if (!anyNA(c(p2_dir, p2_x, p2_y))) {
+            p2 <- c(p2_x, p2_y)
             cloud <- cloud |>
               coi::align_to_north(
                 p1 = center,
                 p2 = p2,
-                heading = heading
+                heading = p2_dir
               )
           }
           dtm <- cloud |>
