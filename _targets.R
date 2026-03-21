@@ -10,7 +10,11 @@ library(targets)
 # Set target options:
 tar_option_set(
   packages = c(
+    "coi",
+    "dplyr",
     "fs",
+    "Rvcg",
+    "stringr",
     "tibble"
   ) # Packages that your targets need for their tasks.
   # format = "qs", # Optionally set the default storage format. qs is fast.
@@ -112,7 +116,7 @@ list(
   ),
   tar_target(
     name = ln_clouds,
-    command = preprocess_cloud(
+    command = prep_ln_cloud(
       raw_cloud_path = manifest_grouped$cloud_path,
       dtm_path = dtms,
       ln_cloud_path = manifest_grouped$ln_prep_path,
@@ -125,21 +129,19 @@ list(
       ln_dim = manifest_grouped$ln_dim,
       lower_cutoff = manifest_grouped$lower_cutoff,
       sor_n = manifest_grouped$sor_n,
-      sor_s = manifest_grouped$sor_s,
-      type = "ln"
+      sor_s = manifest_grouped$sor_s
     ),
     pattern = map(manifest_grouped, dtms),
     format = "file"
   ),
   tar_target(
     name = tsq_clouds,
-    command = preprocess_cloud(
+    command = prep_tsq_cloud(
       ln_cloud_path = ln_clouds,
       tsq_cloud_path = manifest_grouped$tsq_prep_path,
       center_x = manifest_grouped$center_x,
       center_y = manifest_grouped$center_y,
-      tsq_dim = manifest_grouped$tsq_dim,
-      type = "tsq"
+      tsq_dim = manifest_grouped$tsq_dim
     ),
     pattern = map(manifest_grouped, ln_clouds),
     format = "file"
