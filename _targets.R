@@ -1,63 +1,25 @@
-# Created by use_targets().
-# Follow the comments below to fill in this target script.
-# Then follow the manual to check and run the pipeline:
-#   https://books.ropensci.org/targets/walkthrough.html#inspect-the-pipeline
-
-# Load packages required to define the pipeline:
 library(targets)
-# library(tarchetypes) # Load other packages as needed.
+library(tarchetypes)
 
-# Set target options:
 tar_option_set(
   packages = c(
     "coi",
     "dplyr",
     "fs",
+    "ggplot2",
     "glue",
+    "here",
+    "patchwork",
+    "readr",
     "Rvcg",
     "stringr",
     "tibble",
     "qs2"
-  ) # Packages that your targets need for their tasks.
-  # format = "qs", # Optionally set the default storage format. qs is fast.
-  #
-  # Pipelines that take a long time to run may benefit from
-  # optional distributed computing. To use this capability
-  # in tar_make(), supply a {crew} controller
-  # as discussed at https://books.ropensci.org/targets/crew.html.
-  # Choose a controller that suits your needs. For example, the following
-  # sets a controller that scales up to a maximum of two workers
-  # which run as local R processes. Each worker launches when there is work
-  # to do and exits if 60 seconds pass with no tasks to run.
-  #
-  #   controller = crew::crew_controller_local(workers = 2, seconds_idle = 60)
-  #
-  # Alternatively, if you want workers to run on a high-performance computing
-  # cluster, select a controller from the {crew.cluster} package.
-  # For the cloud, see plugin packages like {crew.aws.batch}.
-  # The following example is a controller for Sun Grid Engine (SGE).
-  #
-  #   controller = crew.cluster::crew_controller_sge(
-  #     # Number of workers that the pipeline can scale up to:
-  #     workers = 10,
-  #     # It is recommended to set an idle time so workers can shut themselves
-  #     # down if they are not running tasks.
-  #     seconds_idle = 120,
-  #     # Many clusters install R as an environment module, and you can load it
-  #     # with the script_lines argument. To select a specific verison of R,
-  #     # you may need to include a version string, e.g. "module load R/4.3.2".
-  #     # Check with your system administrator if you are unsure.
-  #     script_lines = "module load R"
-  #   )
-  #
-  # Set other options as needed.
+  )
 )
 
-# Run the R scripts in the R/ folder with your custom functions:
 tar_source()
-# tar_source("other_functions.R") # Source other scripts as needed.
 
-# Replace the target list below with your own:
 list(
   tar_target(
     name = parameters,
@@ -73,7 +35,12 @@ list(
         sors = 10,
         bdt = 0.1,
         enll = 1,
-        chsr = 0.1
+        chsr = 0.1,
+        chsrnd = 1L,
+        enlrnd = 3L,
+        bdrnd = 4L,
+        slprnd = 1L,
+        asprnd = 0L
       )
     },
     format = "qs"
@@ -103,8 +70,7 @@ list(
     name = manifest_grouped,
     command = {
       raw_manifest$manifest |>
-        # dplyr::slice(267:300) |> # Add to test the pipeline on one row
-        dplyr::filter(cloud_path == "C:/Users/alex/repos/tsq_structure_pipeline/data/raw/2023-08-12_02-51-50_A_F35_0306.laz") |>
+        dplyr::slice(1) |>
         dplyr::group_by(cloud_path) |> # one row per cloud = one branch
         targets::tar_group()
     },
@@ -163,49 +129,92 @@ list(
     command = compute_structure(
       cloud_path = ln_clouds,
       tsq_name = manifest_grouped$tsq_id,
-      dtm_stats = !is.na(manifest_grouped$p2_dir) &&
+      aspect = !is.na(manifest_grouped$p2_dir) &&
         !is.na(manifest_grouped$p2_x) &&
         !is.na(manifest_grouped$p2_y),
       dtm_path = dtms,
       boxdim_t = parameters$bdt,
       enl_layer_size = parameters$enll,
       chs_res = parameters$chsr,
-      plot = TRUE
+      chs_rnd = parameters$chsrnd,
+      enl_rnd = parameters$enlrnd,
+      boxdim_rnd = parameters$bdrnd,
+      slope_rnd = parameters$slprnd,
+      asp_rnd = parameters$asprnd,
+      plot = TRUE,
+      type = "ln"
+    ),
+    pattern = map(manifest_grouped, ln_clouds, dtms),
+    format = "qs"
+  ),
+  tar_target(
+    name = tsq_structure,
+    command = compute_structure(
+      cloud_path = tsq_clouds,
+      tsq_name = manifest_grouped$tsq_id,
+      aspect = !is.na(manifest_grouped$p2_dir) &&
+        !is.na(manifest_grouped$p2_x) &&
+        !is.na(manifest_grouped$p2_y),
+      dtm_path = dtms,
+      boxdim_t = parameters$bdt,
+      enl_layer_size = parameters$enll,
+      chs_res = parameters$chsr,
+      chs_rnd = parameters$chsrnd,
+      enl_rnd = parameters$enlrnd,
+      boxdim_rnd = parameters$bdrnd,
+      slope_rnd = parameters$slprnd,
+      asp_rnd = parameters$asprnd,
+      plot = TRUE,
+      type = "tsq"
     ),
     pattern = map(manifest_grouped, tsq_clouds, dtms),
-    format = "qs" # required for list columns
+    format = "qs"
+  ),
+  tar_target(
+    name = structure_complete,
+    command = {
+      ln_structure |>
+        dplyr::left_join(
+          tsq_structure,
+          by = "tsq", suffix = c("_ln", "_tsq")
+        ) |>
+        dplyr::mutate(
+          site = manifest_grouped$site,
+          plot = manifest_grouped$plot,
+          year = manifest_grouped$year,
+          .before = tsq
+        )
+    },
+    format = "qs"
+  ),
+  tar_target(
+    name = structure_file,
+    command = {
+      out_path <- here::here("data/structural_data.csv")
+      structure_complete |>
+        dplyr::select(-dplyr::contains("_plot")) |>
+        readr::write_csv(out_path)
+      out_path
+    },
+    format = "file"
+  ),
+  tar_target(
+    name = plots,
+    command = save_plt(structure_complete),
+    pattern = map(structure_complete),
+    format = "file"
+  ),
+  tar_quarto(
+    report,
+    path = ".",
+    quiet = FALSE
   )
 )
 
-# source(here::here("R/preprocess_cloud.R"))
-# library(targets)
-
-# dtms <- tar_read(dtms)
-# manifest_grouped <- tar_read(manifest_grouped)
-# preprocess_cloud(
-#       raw_cloud_path = manifest_grouped$cloud_path,
-#       dtm_path = dtms,
-#       ln_cloud_path = manifest_grouped$ln_prep_path,
-#       center_x = manifest_grouped$center_x,
-#       center_y = manifest_grouped$center_y,
-#       p2_dir = manifest_grouped$p2_dir,
-#       p2_x = manifest_grouped$p2_x,
-#       p2_y = manifest_grouped$p2_y,
-#       vox_res = manifest_grouped$vox_res,
-#       ln_dim = manifest_grouped$ln_dim,
-#       lower_cutoff = manifest_grouped$lower_cutoff,
-#       sor_n = manifest_grouped$sor_n,
-#       sor_s = manifest_grouped$sor_s,
-#       type = "ln"
-#     )
-
-# 1
-# cloud <- rlas::read.las("C:/Users/alex-work/Desktop/repos/tsq_structure_new/data/raw/2024-08-16_00-30-48_B_T22_0704.laz", "xyz") |>
-#     coi::as_pt_cld() |>
-#     coi::align_to_north(
-#         p1 = c(-0.07, 0.76),
-#         p2 = p2,
-#         heading = "north"
+# res <- tar_read(structure_complete)
+# res$chs_plot
+# res$enl_plot
+# res$boxdim_plot
 
 
 # DONE
@@ -241,9 +250,3 @@ list(
 
 # No POI file -> cloud deleted
 # 2024-08-16_05-09-44_B_P28_1210.laz
-
-
-# manifest_grouped |>
-#   dplyr::mutate(num = dplyr::row_number()) |>
-#   dplyr::filter(cloud_path == "C:/Users/alex-work/Desktop/repos/tsq_structure_new/data/raw/2024-08-26_09-32-44_B_V24_1104.laz") |>
-#   dplyr::pull(num)
