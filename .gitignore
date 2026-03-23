@@ -1,5 +1,6 @@
 /.quarto/
 **/*.quarto_ipynb
-/_targets
 
 /data
+/docs
+/_targets
