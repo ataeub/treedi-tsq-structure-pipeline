@@ -70,7 +70,6 @@ list(
     name = manifest_grouped,
     command = {
       raw_manifest$manifest |>
-        dplyr::slice(1) |>
         dplyr::group_by(cloud_path) |> # one row per cloud = one branch
         targets::tar_group()
     },
