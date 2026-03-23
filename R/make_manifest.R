@@ -1,5 +1,3 @@
-source(here::here("scripts/parse_pois.R"))
-
 make_manifest <- function(
   cloud_paths,
   poi_paths,
@@ -10,16 +8,20 @@ make_manifest <- function(
 ) {
   fs::dir_create(c(dtm_dir, prep_dir))
 
+  dtm_params <- params[c("dtmd", "dtmr")]
+  ln_string <- append(dtm_params, params[c("v", "lnd", "lc", "sorn", "sors")])
+  tsq_string <- append(dtm_params, params[c("v", "tsqd", "lc", "sorn", "sors")])
+
   dtm_string <- paste(
-    names(params[1:2]), unlist(params[1:2]),
+    names(dtm_params), unlist(dtm_params),
     sep = "", collapse = "_"
   )
   ln_string <- paste(
-    names(params[c(1:4, 6:7)]), unlist(params[c(1:4, 6:7)]),
+    names(ln_string), unlist(ln_string),
     sep = "", collapse = "_"
   )
   tsq_string <- paste(
-    names(params[c(1:3, 5:7)]), unlist(params[c(1:3, 5:7)]),
+    names(tsq_string), unlist(tsq_string),
     sep = "", collapse = "_"
   )
   params_string <- paste(
@@ -34,7 +36,8 @@ make_manifest <- function(
       year = stringr::str_extract(basename, "^\\d{4}(?=-)"),
       site = stringr::str_extract(basename, "(?<=_)[A-Z](?=_)"),
       plot = stringr::str_extract(basename, "[A-Z]\\d+(?=_\\d{4}$)"),
-      tsq_id = stringr::str_extract(basename, "\\d{4}$"),
+      tsq_pos = stringr::str_extract(basename, "\\d{4}$"),
+      tsq_id = paste0(plot, "_", tsq_pos),
       dtm_path = fs::path(
         dtm_dir, paste0(basename, "_dtm_", dtm_string),
         ext = "ply"
@@ -72,6 +75,7 @@ make_manifest <- function(
       year,
       site,
       plot,
+      tsq_pos,
       tsq_id,
       center_x,
       center_y,
