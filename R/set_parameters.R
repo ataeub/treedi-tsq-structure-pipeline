@@ -9,33 +9,39 @@ set_parameters <- function(
   sors = 10,
   bdt = 0.1,
   enll = 1,
-  chsr = 0.1
+  chsr = 0.1,
+  chsrnd = 1L,
+  enlrnd = 3L,
+  bdrnd = 4L,
+  slprnd = 1L,
+  asprnd = 0L
 ) {
   parameters <- as.list(environment())
 
   if (!all(sapply(parameters, is.numeric))) {
     stop("All parameters must be numeric!")
   }
-  if (!all(sapply(parameters[names(parameters) != "lc"], `>`, 0))) {
+  rnd_params <- c("chsrnd", "enlrnd", "bdimrnd", "slprnd", "asprnd")
+  poscheck_excluded <- c("lc", rnd_params)
+  if (!all(sapply(parameters[!names(parameters) %in% poscheck_excluded], `>`, 0))) {
     stop("All parameters except lc must be positive!")
   }
   if (!(lnd > tsqd)) {
     stop("lnd must be larger than tsqd!")
   }
-  if (!(lnd > v)) {
-    stop("lnd must be larger than v!")
+  strictv_params <- c("lnd", "tsqd")
+  if (!all(sapply(parameters[names(parameters) %in% strictv_params], `>`, v))) {
+    stop("lnd, tsqd must be larger than v!")
   }
-  if (!(tsqd > v)) {
-    stop("tsqd must be larger than v!")
+  geqv_params <- c("chsr", "bdt", "enll")
+  if (!all(sapply(parameters[names(parameters) %in% geqv_params], `>=`, v))) {
+    stop("chsr, bdt, enll must be >= v!")
   }
-  if (!(enll >= v)) {
-    stop("enll must be larger than v!")
+  if (!all(sapply(parameters[names(parameters) %in% rnd_params], rlang::is_integerish))) {
+    stop("All -rnd parameters must be integers!")
   }
-  if (!(chsr >= v)) {
-    stop("chsr must be larger than v!")
-  }
-  if (!(bdt >= v)) {
-    stop("bdt must be larger than v!")
+  if (!all(sapply(parameters[names(parameters) %in% rnd_params],  `>=`, 0))) {
+    stop("All -rnd parameters must positive!")
   }
 
   parameters
