@@ -3,34 +3,29 @@ source(here::here("scripts/parse_pois.R"))
 make_manifest <- function(
   cloud_paths,
   poi_paths,
+  params,
   dtm_dir = here::here("data/processed/dtms"),
   prep_dir = here::here("data/processed/preprocessed"),
-  dtm_dim = 2.58 + 10,
-  dtm_res = 0.3,
-  vox_res = 0.1,
-  ln_dim = 2.58,
-  tsq_dim = 1.29,
-  lower_cutoff = 0.5,
-  sor_n = 20,
-  sor_s = 10,
   save = TRUE
 ) {
   fs::dir_create(c(dtm_dir, prep_dir))
 
-  params_list <- list(
-    "dtmd" = dtm_dim,
-    "dtmr" = dtm_res,
-    "v" = vox_res,
-    "lnd" = ln_dim,
-    "tsqd" = tsq_dim,
-    "lc" = lower_cutoff,
-    "sorn" = sor_n,
-    "sors" = sor_s
+  dtm_string <- paste(
+    names(params[1:2]), unlist(params[1:2]),
+    sep = "", collapse = "_"
   )
-  dtm_string <- paste(names(params_list[1:2]), unlist(params_list[1:2]), sep = "", collapse = "_")
-  ln_string <- paste(names(params_list[c(1:4, 6:7)]), unlist(params_list[c(1:4, 6:7)]), sep = "", collapse = "_")
-  tsq_string <- paste(names(params_list[c(1:3, 5:7)]), unlist(params_list[c(1:3, 5:7)]), sep = "", collapse = "_")
-  params_string <- paste(names(params_list), unlist(params_list), sep = "", collapse = "_")
+  ln_string <- paste(
+    names(params[c(1:4, 6:7)]), unlist(params[c(1:4, 6:7)]),
+    sep = "", collapse = "_"
+  )
+  tsq_string <- paste(
+    names(params[c(1:3, 5:7)]), unlist(params[c(1:3, 5:7)]),
+    sep = "", collapse = "_"
+  )
+  params_string <- paste(
+    names(params), unlist(params),
+    sep = "", collapse = "_"
+  )
 
   manifest <- dplyr::tibble(cloud_path = cloud_paths) |>
     dplyr::mutate(
@@ -90,7 +85,6 @@ make_manifest <- function(
       tsq_prep_path
     )
 
-
   missing_pois <- manifest |>
     dplyr::filter(!is.na(cloud_path) & is.na(poi_path)) |>
     dplyr::pull(cloud_path)
@@ -105,7 +99,7 @@ make_manifest <- function(
 
   out <- list(
     "manifest" = manifest,
-    "params" = params_list
+    "params" = params
   )
   if (isTRUE(save)) {
     out_name <- paste0("manifest_", params_string)

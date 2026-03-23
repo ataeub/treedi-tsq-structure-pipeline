@@ -13,9 +13,11 @@ tar_option_set(
     "coi",
     "dplyr",
     "fs",
+    "glue",
     "Rvcg",
     "stringr",
-    "tibble"
+    "tibble",
+    "qs2"
   ) # Packages that your targets need for their tasks.
   # format = "qs", # Optionally set the default storage format. qs is fast.
   #
@@ -58,6 +60,25 @@ tar_source()
 # Replace the target list below with your own:
 list(
   tar_target(
+    name = parameters,
+    command = {
+      set_parameters(
+        dtmd = 2.58 + 10,
+        dtmr = 0.3,
+        v = 0.1,
+        lnd = 2.58,
+        tsqd = 1.29,
+        lc = 0.5,
+        sorn = 20,
+        sors = 10,
+        bdt = 0.1,
+        enll = 1,
+        chsr = 0.1
+      )
+    },
+    format = "qs"
+  ),
+  tar_target(
     name = raw_cloud_paths,
     command = fs::dir_ls(here::here("data/raw/"), glob = "*.laz"),
     format = "file"
@@ -73,30 +94,21 @@ list(
       make_manifest(
         cloud_paths = raw_cloud_paths,
         poi_paths = poi_paths,
-        dtm_dim = 2.58 + 10,
-        dtm_res = 0.3
+        params = parameters
       )
-    }
+    },
+    format = "qs"
   ),
   tar_target(
     name = manifest_grouped,
     command = {
       raw_manifest$manifest |>
         # dplyr::slice(267:300) |> # Add to test the pipeline on one row
-        # dplyr::filter(cloud_path == "C:/Users/alex-work/Desktop/repos/tsq_structure_new/data/raw/2024-08-16_04-16-10_B_P28_0606,0607.laz") |>
-        dplyr::mutate(
-          dtm_dim = raw_manifest$params$dtmd,
-          dtm_res = raw_manifest$params$dtmr,
-          vox_res = raw_manifest$params$v,
-          ln_dim = raw_manifest$params$lnd,
-          tsq_dim = raw_manifest$params$tsqd,
-          lower_cutoff = raw_manifest$params$lc,
-          sor_n = raw_manifest$params$sorn,
-          sor_s = raw_manifest$params$sors
-        ) |>
+        dplyr::filter(cloud_path == "C:/Users/alex/repos/tsq_structure_pipeline/data/raw/2023-08-12_02-51-50_A_F35_0306.laz") |>
         dplyr::group_by(cloud_path) |> # one row per cloud = one branch
         targets::tar_group()
-    }
+    },
+    format = "qs"
   ),
   tar_target(
     name = dtms,
@@ -108,8 +120,8 @@ list(
       p2_dir       = manifest_grouped$p2_dir,
       p2_x         = manifest_grouped$p2_x,
       p2_y         = manifest_grouped$p2_y,
-      dtm_dim      = manifest_grouped$dtm_dim,
-      dtm_res      = manifest_grouped$dtm_res
+      dtm_dim      = parameters$dtmd,
+      dtm_res      = parameters$dtmr
     ),
     pattern = map(manifest_grouped),
     format = "file"
@@ -125,11 +137,11 @@ list(
       p2_dir = manifest_grouped$p2_dir,
       p2_x = manifest_grouped$p2_x,
       p2_y = manifest_grouped$p2_y,
-      vox_res = manifest_grouped$vox_res,
-      ln_dim = manifest_grouped$ln_dim,
-      lower_cutoff = manifest_grouped$lower_cutoff,
-      sor_n = manifest_grouped$sor_n,
-      sor_s = manifest_grouped$sor_s
+      vox_res = parameters$v,
+      ln_dim = parameters$lnd,
+      lower_cutoff = parameters$lc,
+      sor_n = parameters$sorn,
+      sor_s = parameters$sors
     ),
     pattern = map(manifest_grouped, dtms),
     format = "file"
@@ -141,10 +153,27 @@ list(
       tsq_cloud_path = manifest_grouped$tsq_prep_path,
       center_x = manifest_grouped$center_x,
       center_y = manifest_grouped$center_y,
-      tsq_dim = manifest_grouped$tsq_dim
+      tsq_dim = parameters$tsqd
     ),
     pattern = map(manifest_grouped, ln_clouds),
     format = "file"
+  ),
+  tar_target(
+    name = ln_structure,
+    command = compute_structure(
+      cloud_path = ln_clouds,
+      tsq_name = manifest_grouped$tsq_id,
+      dtm_stats = !is.na(manifest_grouped$p2_dir) &&
+        !is.na(manifest_grouped$p2_x) &&
+        !is.na(manifest_grouped$p2_y),
+      dtm_path = dtms,
+      boxdim_t = parameters$bdt,
+      enl_layer_size = parameters$enll,
+      chs_res = parameters$chsr,
+      plot = TRUE
+    ),
+    pattern = map(manifest_grouped, tsq_clouds, dtms),
+    format = "qs" # required for list columns
   )
 )
 
@@ -179,14 +208,11 @@ list(
 #         heading = "north"
 
 
-
-
-
 # DONE
 # North point == center
 # -> north point set
 # C:/Users/alex-work/Desktop/repos/tsq_structure_new/data/raw/2024-08-16_00-46-24_B_S22_1404.laz
-# 
+#
 # This seems to be a failed or worse scan since there is one 3 min later with many more points
 # cloud deleted
 # C:/Users/alex-work/Desktop/repos/tsq_structure_new/data/raw/2024-08-16_01-30-45_B_T22_1708.laz

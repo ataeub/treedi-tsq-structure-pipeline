@@ -3,8 +3,11 @@ prep_tsq_cloud <- function(
   tsq_cloud_path = NULL,
   center_x = NULL,
   center_y = NULL,
-  tsq_dim = 1.29
+  tsq_dim = 1.29,
+  verbose = TRUE
 ) {
+  if (isTRUE(verbose)) message("Processing: ", ln_cloud_path)
+
   center <- c(center_x, center_y)
 
   tsq_cloud <- rlas::read.las(ln_cloud_path, "xyz") |>

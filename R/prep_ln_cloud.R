@@ -11,8 +11,11 @@ prep_ln_cloud <- function(
   ln_dim = 2.58,
   lower_cutoff = 0.5,
   sor_n = 20,
-  sor_s = 10
+  sor_s = 10,
+  verbose = TRUE
 ) {
+  if (isTRUE(verbose)) message("Processing: ", raw_cloud_path)
+
   center <- c(center_x, center_y)
 
   p2 <- c(p2_x, p2_y)
