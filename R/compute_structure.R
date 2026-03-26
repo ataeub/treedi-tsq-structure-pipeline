@@ -1,6 +1,8 @@
 compute_structure <- function(
   cloud_path,
   tsq_name,
+  year,
+  site,
   aspect = FALSE,
   dtm_path = NULL,
   boxdim_t = 0.1,
@@ -58,6 +60,8 @@ compute_structure <- function(
   slope <- dtm_stats$slope
 
   results <- tibble::tibble(
+    year = year,
+    site = site,
     tsq = tsq_name,
     chs_max = round(chs_res$max, chs_rnd),
     chs_mean = round(chs_res$mean, chs_rnd),

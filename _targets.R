@@ -133,6 +133,8 @@ list(
     command = compute_structure(
       cloud_path = ln_clouds,
       tsq_name = manifest_grouped$tsq_id,
+      year = manifest_grouped$year,
+      site = manifest_grouped$site,
       aspect = !is.na(manifest_grouped$p2_dir) &&
         !is.na(manifest_grouped$p2_x) &&
         !is.na(manifest_grouped$p2_y),
@@ -156,6 +158,8 @@ list(
     command = compute_structure(
       cloud_path = tsq_clouds,
       tsq_name = manifest_grouped$tsq_id,
+      year = manifest_grouped$year,
+      site = manifest_grouped$site,
       aspect = !is.na(manifest_grouped$p2_dir) &&
         !is.na(manifest_grouped$p2_x) &&
         !is.na(manifest_grouped$p2_y),
@@ -180,13 +184,7 @@ list(
       ln_structure |>
         dplyr::left_join(
           tsq_structure,
-          by = "tsq", suffix = c("_ln", "_tsq")
-        ) |>
-        dplyr::mutate(
-          site = manifest_grouped$site,
-          plot = manifest_grouped$plot,
-          year = manifest_grouped$year,
-          .before = tsq
+          by = dplyr::join_by(year, tsq, site, slope, aspect), suffix = c("_ln", "_tsq")
         )
     },
     format = "qs"

@@ -5,6 +5,8 @@ save_plt <- function(
   out_dir <- here::here(out_dir)
   fs::dir_create(out_dir)
 
+  site <- as.character(dplyr::pull(structure_row, "site")[[1]])
+  year <- as.character(dplyr::pull(structure_row, "year")[[1]])
   tsq_id <- as.character(dplyr::pull(structure_row, "tsq")[[1]])
 
   chs_ln <- dplyr::pull(structure_row, "chs_plot_ln")[[1]]
@@ -21,7 +23,7 @@ save_plt <- function(
 
   out_path <- fs::path(
     out_dir,
-    glue::glue("{tsq_id}_structure_plots"),
+    glue::glue("{year}_{site}_{tsq_id}_structure_plots"),
     ext = "svg"
   )
 
