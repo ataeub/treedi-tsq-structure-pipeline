@@ -7,14 +7,19 @@ tar_option_set(
     "dplyr",
     "fs",
     "ggplot2",
+    "ggtext",
     "glue",
     "here",
     "patchwork",
+    "purrr",
+    "qs2",
     "readr",
+    "rlang",
+    "rlas",
     "Rvcg",
     "stringr",
     "tibble",
-    "qs2"
+    "tidyr"
   )
 )
 
