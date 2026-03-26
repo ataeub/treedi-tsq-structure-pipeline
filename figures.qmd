@@ -1,0 +1,50 @@
+---
+title: "TSQ Structural Figures"
+project:
+    execute-dir: project
+format:
+  html: default
+  revealjs:
+    title-slide: false
+    output-file: structural_figures.html
+---
+
+## Index {#index}
+
+```{r}
+#| echo: false
+#| results: asis
+fig_dir <- "data/figures"
+
+cat("<div class='index-scroll'>\n\n")
+figs <- fs::dir_ls(fig_dir, glob = "*.svg")
+figs <- sort(figs)
+
+titles <- fs::path_ext_remove(fs::path_file(figs)) |>
+  stringr::str_remove("_structure_plots")
+
+ids <- titles |>
+  tolower() |>
+  stringr::str_replace_all("[^a-z0-9]+", "-") |>
+  stringr::str_replace_all("(^-|-$)", "")
+
+for (i in seq_along(titles)) {
+  cat("- [", titles[i], "](#", ids[i], ")\n", sep = "")
+}
+cat("\n</div>\n")
+
+for (i in seq_along(figs)) {
+  cat("## ", titles[i], " {#", ids[i], "}\n\n", sep = "")
+  cat("![](", figs[i], ")\n\n", sep = "")
+}
+```
+
+<style>
+.index-scroll {
+  max-height: 70vh;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+</style>

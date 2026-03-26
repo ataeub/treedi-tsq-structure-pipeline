@@ -1,0 +1,26 @@
+---
+title: "TSQ Structural Analysis Pipeline"
+author: "Alexander Täuber"
+format: html
+project:
+    execute-dir: project
+execute:
+  warning: false
+  message: false
+---
+
+# {targets} Pipeline structure 
+```{r}
+targets::tar_visnetwork(
+  outdated = FALSE,
+  label = c("time", "size")
+  )
+```
+
+# TSQ Structural data
+```{r}
+structure <- targets::tar_read(structure_complete) |>
+  dplyr::select(-dplyr::contains("_plot"))
+
+DT::datatable(structure, filter = "top")
+```

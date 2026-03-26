@@ -1,5 +1,21 @@
+.RData
+.Rprofile
+.Rhistory
+
 /.quarto/
 **/*.quarto_ipynb
+
+/data/figures
+/data/processed
+/data/raw
+/public
+/_targets
+
+/data/figures
+/data/processed
+/data/raw
+/public
+/_targets
 
 .Rhistory
 .Rprofile
