@@ -22,5 +22,5 @@ targets::tar_visnetwork(
 structure <- targets::tar_read(structure_complete) |>
   dplyr::select(-dplyr::contains("_plot"))
 
-DT::datatable(structure)
+DT::datatable(structure, filter = "top")
 ```
