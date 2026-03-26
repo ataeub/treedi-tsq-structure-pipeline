@@ -1,0 +1,3670 @@
+[
+  {
+    "objectID": "structural_analysis.html",
+    "href": "structural_analysis.html",
+    "title": "TSQ Structural Analysis Pipeline",
+    "section": "",
+    "text": "{targets} Pipeline structure\n\ntargets::tar_visnetwork(\n  outdated = FALSE,\n  label = c(\"time\", \"size\")\n  )\n\n\n\n\n\n\n\nTSQ Structural data\n\nstructure &lt;- targets::tar_read(structure_complete) |&gt;\n  dplyr::select(-dplyr::contains(\"_plot\"))\n\nDT::datatable(structure, filter = \"top\")"
+  },
+  {
+    "objectID": "structural_figures.html#index",
+    "href": "structural_figures.html#index",
+    "title": "TSQ Structural Figures",
+    "section": "Index",
+    "text": "Index\n\n\n2023_A_C32_0110\n2023_A_C32_1612\n2023_A_C33_0609\n2023_A_C33_0918\n2023_A_D32_1401\n2023_A_D33_0407\n2023_A_D33_0610\n2023_A_D33_0703\n2023_A_E34_0216\n2023_A_E34_0604\n2023_A_F21_0317\n2023_A_F21_1014\n2023_A_F27_0517\n2023_A_F27_1201\n2023_A_F35_0306\n2023_A_F35_1113\n2023_A_F35_1814\n2023_A_G21_0406\n2023_A_G21_0410\n2023_A_G21_0812\n2023_A_G21_1008\n2023_A_G21_1809\n2023_A_G21_1816\n2023_A_G26_0116\n2023_A_G26_0214\n2023_A_G26_0512\n2023_A_G26_0606\n2023_A_G26_0912\n2023_A_G26_1103\n2023_A_G31_1908\n2023_A_H27_0005\n2023_A_H27_0307\n2023_A_H27_0318\n2023_A_H27_1710\n2023_A_H29_1604\n2023_A_H29_1606\n2023_A_H30_0315\n2023_A_H30_0606\n2023_A_H30_0611\n2023_A_H30_0709\n2023_A_H30_1010\n2023_A_H31_0403\n2023_A_H31_0901\n2023_A_I26_0010\n2023_A_I26_1711\n2023_A_I27_0007\n2023_A_I27_0803\n2023_A_I28_0412\n2023_A_I29_0208\n2023_A_I29_0504\n2023_A_I29_0610\n2023_A_I29_0717\n2023_A_I29_1218\n2023_A_I29_1303\n2023_A_L11_0812\n2023_A_L11_1812\n2023_A_L19_1706\n2023_A_L21_0600\n2023_A_L21_0816\n2023_A_L21_1601\n2023_A_L22_0115\n2023_A_L22_0614\n2023_A_M11_0218\n2023_A_M11_0514\n2023_A_M11_1108\n2023_A_M11_1613\n2023_A_M11_1616\n2023_A_M11_1802\n2023_A_M13_0909\n2023_A_M13_1309\n2023_A_M13_1816\n2023_A_M19_0003\n2023_A_M19_0102\n2023_A_M19_0605\n2023_A_M19_0709\n2023_A_M19_1003\n2023_A_M22_0201\n2023_A_M22_0213\n2023_A_M22_1313\n2023_A_N11_0306\n2023_A_N11_1510\n2023_A_N13_0505\n2023_A_N13_0808\n2023_A_N14_0415\n2023_A_N14_1019\n2023_A_N14_1311\n2023_A_N27_0104\n2023_A_N27_0306\n2023_A_N27_0804\n2023_A_N27_1107\n2023_A_N27_1512\n2023_A_O11_0303\n2023_A_O12_0016\n2023_A_O12_0712\n2023_A_O12_0817\n2023_A_O12_1012\n2023_A_O12_1205\n2023_A_O25_1006\n2023_A_O26_0406\n2023_A_O26_1203\n2023_A_O26_1214\n2023_A_O26_1301\n2023_A_O26_1706\n2023_A_O27_1218\n2023_A_O27_1507\n2023_A_O28_1715\n2023_A_P19_0113\n2023_A_P19_0410\n2023_A_P26_0614\n2023_A_P26_0818\n2023_A_Q20_0205\n2023_A_Q20_0317\n2023_A_Q20_0403\n2023_A_Q20_0415\n2023_A_Q20_0419\n2023_A_Q20_0705\n2023_A_S10_0004\n2023_A_S10_0716\n2023_A_S9_0404\n2023_A_S9_1108\n2023_A_T10_0617\n2023_A_W14_0614\n2023_A_W14_1511\n2023_A_X14_0102\n2023_A_X14_0409\n2023_A_X14_0808\n2023_A_X14_1408\n2023_A_X14_1503\n2023_A_X14_1511\n2024_B_E26_1805\n2024_B_F27_0310\n2024_B_F27_0403\n2024_B_F27_0519\n2024_B_F27_0609\n2024_B_F27_0818\n2024_B_F28_0600\n2024_B_F28_1412\n2024_B_F28_1510\n2024_B_F29_0307\n2024_B_G28_0206\n2024_B_G28_0513\n2024_B_G29_0710\n2024_B_G29_0807\n2024_B_I25_0401\n2024_B_I25_0607\n2024_B_J25_0009\n2024_B_J25_0508\n2024_B_J25_0818\n2024_B_J25_1004\n2024_B_J25_1211\n2024_B_J25_1300\n2024_B_L21_0103\n2024_B_L21_0211\n2024_B_L21_0403\n2024_B_L21_0505\n2024_B_L21_1010\n2024_B_L21_1406\n2024_B_M22_0203\n2024_B_M22_1001\n2024_B_M7_1601\n2024_B_M7_1800\n2024_B_M8_1717\n2024_B_M8_1809\n2024_B_N8_0212\n2024_B_N8_0615\n2024_B_N8_0904\n2024_B_N8_1202\n2024_B_O26_0208\n2024_B_O26_1001\n2024_B_O26_1505\n2024_B_O26_1509\n2024_B_O26_1705\n2024_B_O26_1716\n2024_B_O27_0502\n2024_B_O27_1000\n2024_B_P22_1510\n2024_B_P22_1607\n2024_B_P22_1811\n2024_B_P23_1713\n2024_B_P28_0405\n2024_B_P29_0018\n2024_B_P29_0712\n2024_B_P29_1012\n2024_B_Q17_0303\n2024_B_Q17_1213\n2024_B_Q18_0515\n2024_B_Q18_1009\n2024_B_Q18_1515\n2024_B_Q23_0700\n2024_B_Q23_0804\n2024_B_Q26_0813\n2024_B_Q26_1005\n2024_B_Q26_1213\n2024_B_Q27_0410\n2024_B_Q27_1409\n2024_B_Q29_1316\n2024_B_Q29_1702\n2024_B_Q3_0117\n2024_B_Q3_0608\n2024_B_Q3_1408\n2024_B_R17_0511\n2024_B_R17_0604\n2024_B_R17_1202\n2024_B_R2_0413\n2024_B_R2_0502\n2024_B_R2_0713\n2024_B_R28_0116\n2024_B_R28_0318\n2024_B_R28_1010\n2024_B_R29_0713\n2024_B_R29_1009\n2024_B_R3_1113\n2024_B_R3_1414\n2024_B_S12_0310\n2024_B_S12_0708\n2024_B_S12_1209\n2024_B_S12_1213\n2024_B_S12_1504\n2024_B_S13_1419\n2024_B_S22_0509\n2024_B_S22_1404\n2024_B_S28_0211\n2024_B_S28_0600\n2024_B_S28_0707\n2024_B_T13_1117\n2024_B_T13_1612\n2024_B_T22_0602\n2024_B_T22_0704\n2024_B_T22_1005\n2024_B_T22_1708\n2024_B_T22_1714\n2024_B_T22_1915\n2024_B_T29_0912\n2024_B_T29_1216\n2024_B_U19_1003\n2024_B_U19_1111\n2024_B_U19_1116\n2024_B_U24_0406\n2024_B_U24_1117\n2024_B_U24_1403\n2024_B_U28_0210\n2024_B_U28_0404\n2024_B_U29_0319\n2024_B_U29_0804\n2024_B_U29_1216\n2024_B_V18_0216\n2024_B_V18_0704\n2024_B_V18_0714\n2024_B_V19_0217\n2024_B_V19_0503\n2024_B_V22_0317\n2024_B_V22_0510\n2024_B_V22_0517\n2024_B_V22_0901\n2024_B_V22_1008\n2024_B_V22_1803\n2024_B_V23_0416\n2024_B_V23_0809\n2024_B_V24_1105\n2024_B_V24_1312"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-c32-0110",
+    "href": "structural_figures.html#2023-a-c32-0110",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_C32_0110",
+    "text": "2023_A_C32_0110"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-c32-1612",
+    "href": "structural_figures.html#2023-a-c32-1612",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_C32_1612",
+    "text": "2023_A_C32_1612"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-c33-0609",
+    "href": "structural_figures.html#2023-a-c33-0609",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_C33_0609",
+    "text": "2023_A_C33_0609"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-c33-0918",
+    "href": "structural_figures.html#2023-a-c33-0918",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_C33_0918",
+    "text": "2023_A_C33_0918"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-d32-1401",
+    "href": "structural_figures.html#2023-a-d32-1401",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_D32_1401",
+    "text": "2023_A_D32_1401"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-d33-0407",
+    "href": "structural_figures.html#2023-a-d33-0407",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_D33_0407",
+    "text": "2023_A_D33_0407"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-d33-0610",
+    "href": "structural_figures.html#2023-a-d33-0610",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_D33_0610",
+    "text": "2023_A_D33_0610"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-d33-0703",
+    "href": "structural_figures.html#2023-a-d33-0703",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_D33_0703",
+    "text": "2023_A_D33_0703"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-e34-0216",
+    "href": "structural_figures.html#2023-a-e34-0216",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_E34_0216",
+    "text": "2023_A_E34_0216"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-e34-0604",
+    "href": "structural_figures.html#2023-a-e34-0604",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_E34_0604",
+    "text": "2023_A_E34_0604"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-f21-0317",
+    "href": "structural_figures.html#2023-a-f21-0317",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_F21_0317",
+    "text": "2023_A_F21_0317"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-f21-1014",
+    "href": "structural_figures.html#2023-a-f21-1014",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_F21_1014",
+    "text": "2023_A_F21_1014"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-f27-0517",
+    "href": "structural_figures.html#2023-a-f27-0517",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_F27_0517",
+    "text": "2023_A_F27_0517"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-f27-1201",
+    "href": "structural_figures.html#2023-a-f27-1201",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_F27_1201",
+    "text": "2023_A_F27_1201"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-f35-0306",
+    "href": "structural_figures.html#2023-a-f35-0306",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_F35_0306",
+    "text": "2023_A_F35_0306"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-f35-1113",
+    "href": "structural_figures.html#2023-a-f35-1113",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_F35_1113",
+    "text": "2023_A_F35_1113"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-f35-1814",
+    "href": "structural_figures.html#2023-a-f35-1814",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_F35_1814",
+    "text": "2023_A_F35_1814"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-g21-0406",
+    "href": "structural_figures.html#2023-a-g21-0406",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_G21_0406",
+    "text": "2023_A_G21_0406"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-g21-0410",
+    "href": "structural_figures.html#2023-a-g21-0410",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_G21_0410",
+    "text": "2023_A_G21_0410"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-g21-0812",
+    "href": "structural_figures.html#2023-a-g21-0812",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_G21_0812",
+    "text": "2023_A_G21_0812"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-g21-1008",
+    "href": "structural_figures.html#2023-a-g21-1008",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_G21_1008",
+    "text": "2023_A_G21_1008"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-g21-1809",
+    "href": "structural_figures.html#2023-a-g21-1809",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_G21_1809",
+    "text": "2023_A_G21_1809"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-g21-1816",
+    "href": "structural_figures.html#2023-a-g21-1816",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_G21_1816",
+    "text": "2023_A_G21_1816"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-g26-0116",
+    "href": "structural_figures.html#2023-a-g26-0116",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_G26_0116",
+    "text": "2023_A_G26_0116"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-g26-0214",
+    "href": "structural_figures.html#2023-a-g26-0214",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_G26_0214",
+    "text": "2023_A_G26_0214"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-g26-0512",
+    "href": "structural_figures.html#2023-a-g26-0512",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_G26_0512",
+    "text": "2023_A_G26_0512"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-g26-0606",
+    "href": "structural_figures.html#2023-a-g26-0606",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_G26_0606",
+    "text": "2023_A_G26_0606"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-g26-0912",
+    "href": "structural_figures.html#2023-a-g26-0912",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_G26_0912",
+    "text": "2023_A_G26_0912"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-g26-1103",
+    "href": "structural_figures.html#2023-a-g26-1103",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_G26_1103",
+    "text": "2023_A_G26_1103"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-g31-1908",
+    "href": "structural_figures.html#2023-a-g31-1908",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_G31_1908",
+    "text": "2023_A_G31_1908"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-h27-0005",
+    "href": "structural_figures.html#2023-a-h27-0005",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_H27_0005",
+    "text": "2023_A_H27_0005"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-h27-0307",
+    "href": "structural_figures.html#2023-a-h27-0307",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_H27_0307",
+    "text": "2023_A_H27_0307"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-h27-0318",
+    "href": "structural_figures.html#2023-a-h27-0318",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_H27_0318",
+    "text": "2023_A_H27_0318"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-h27-1710",
+    "href": "structural_figures.html#2023-a-h27-1710",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_H27_1710",
+    "text": "2023_A_H27_1710"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-h29-1604",
+    "href": "structural_figures.html#2023-a-h29-1604",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_H29_1604",
+    "text": "2023_A_H29_1604"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-h29-1606",
+    "href": "structural_figures.html#2023-a-h29-1606",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_H29_1606",
+    "text": "2023_A_H29_1606"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-h30-0315",
+    "href": "structural_figures.html#2023-a-h30-0315",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_H30_0315",
+    "text": "2023_A_H30_0315"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-h30-0606",
+    "href": "structural_figures.html#2023-a-h30-0606",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_H30_0606",
+    "text": "2023_A_H30_0606"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-h30-0611",
+    "href": "structural_figures.html#2023-a-h30-0611",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_H30_0611",
+    "text": "2023_A_H30_0611"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-h30-0709",
+    "href": "structural_figures.html#2023-a-h30-0709",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_H30_0709",
+    "text": "2023_A_H30_0709"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-h30-1010",
+    "href": "structural_figures.html#2023-a-h30-1010",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_H30_1010",
+    "text": "2023_A_H30_1010"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-h31-0403",
+    "href": "structural_figures.html#2023-a-h31-0403",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_H31_0403",
+    "text": "2023_A_H31_0403"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-h31-0901",
+    "href": "structural_figures.html#2023-a-h31-0901",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_H31_0901",
+    "text": "2023_A_H31_0901"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-i26-0010",
+    "href": "structural_figures.html#2023-a-i26-0010",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_I26_0010",
+    "text": "2023_A_I26_0010"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-i26-1711",
+    "href": "structural_figures.html#2023-a-i26-1711",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_I26_1711",
+    "text": "2023_A_I26_1711"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-i27-0007",
+    "href": "structural_figures.html#2023-a-i27-0007",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_I27_0007",
+    "text": "2023_A_I27_0007"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-i27-0803",
+    "href": "structural_figures.html#2023-a-i27-0803",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_I27_0803",
+    "text": "2023_A_I27_0803"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-i28-0412",
+    "href": "structural_figures.html#2023-a-i28-0412",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_I28_0412",
+    "text": "2023_A_I28_0412"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-i29-0208",
+    "href": "structural_figures.html#2023-a-i29-0208",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_I29_0208",
+    "text": "2023_A_I29_0208"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-i29-0504",
+    "href": "structural_figures.html#2023-a-i29-0504",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_I29_0504",
+    "text": "2023_A_I29_0504"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-i29-0610",
+    "href": "structural_figures.html#2023-a-i29-0610",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_I29_0610",
+    "text": "2023_A_I29_0610"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-i29-0717",
+    "href": "structural_figures.html#2023-a-i29-0717",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_I29_0717",
+    "text": "2023_A_I29_0717"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-i29-1218",
+    "href": "structural_figures.html#2023-a-i29-1218",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_I29_1218",
+    "text": "2023_A_I29_1218"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-i29-1303",
+    "href": "structural_figures.html#2023-a-i29-1303",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_I29_1303",
+    "text": "2023_A_I29_1303"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-l11-0812",
+    "href": "structural_figures.html#2023-a-l11-0812",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_L11_0812",
+    "text": "2023_A_L11_0812"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-l11-1812",
+    "href": "structural_figures.html#2023-a-l11-1812",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_L11_1812",
+    "text": "2023_A_L11_1812"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-l19-1706",
+    "href": "structural_figures.html#2023-a-l19-1706",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_L19_1706",
+    "text": "2023_A_L19_1706"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-l21-0600",
+    "href": "structural_figures.html#2023-a-l21-0600",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_L21_0600",
+    "text": "2023_A_L21_0600"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-l21-0816",
+    "href": "structural_figures.html#2023-a-l21-0816",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_L21_0816",
+    "text": "2023_A_L21_0816"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-l21-1601",
+    "href": "structural_figures.html#2023-a-l21-1601",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_L21_1601",
+    "text": "2023_A_L21_1601"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-l22-0115",
+    "href": "structural_figures.html#2023-a-l22-0115",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_L22_0115",
+    "text": "2023_A_L22_0115"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-l22-0614",
+    "href": "structural_figures.html#2023-a-l22-0614",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_L22_0614",
+    "text": "2023_A_L22_0614"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-m11-0218",
+    "href": "structural_figures.html#2023-a-m11-0218",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_M11_0218",
+    "text": "2023_A_M11_0218"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-m11-0514",
+    "href": "structural_figures.html#2023-a-m11-0514",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_M11_0514",
+    "text": "2023_A_M11_0514"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-m11-1108",
+    "href": "structural_figures.html#2023-a-m11-1108",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_M11_1108",
+    "text": "2023_A_M11_1108"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-m11-1613",
+    "href": "structural_figures.html#2023-a-m11-1613",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_M11_1613",
+    "text": "2023_A_M11_1613"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-m11-1616",
+    "href": "structural_figures.html#2023-a-m11-1616",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_M11_1616",
+    "text": "2023_A_M11_1616"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-m11-1802",
+    "href": "structural_figures.html#2023-a-m11-1802",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_M11_1802",
+    "text": "2023_A_M11_1802"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-m13-0909",
+    "href": "structural_figures.html#2023-a-m13-0909",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_M13_0909",
+    "text": "2023_A_M13_0909"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-m13-1309",
+    "href": "structural_figures.html#2023-a-m13-1309",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_M13_1309",
+    "text": "2023_A_M13_1309"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-m13-1816",
+    "href": "structural_figures.html#2023-a-m13-1816",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_M13_1816",
+    "text": "2023_A_M13_1816"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-m19-0003",
+    "href": "structural_figures.html#2023-a-m19-0003",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_M19_0003",
+    "text": "2023_A_M19_0003"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-m19-0102",
+    "href": "structural_figures.html#2023-a-m19-0102",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_M19_0102",
+    "text": "2023_A_M19_0102"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-m19-0605",
+    "href": "structural_figures.html#2023-a-m19-0605",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_M19_0605",
+    "text": "2023_A_M19_0605"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-m19-0709",
+    "href": "structural_figures.html#2023-a-m19-0709",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_M19_0709",
+    "text": "2023_A_M19_0709"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-m19-1003",
+    "href": "structural_figures.html#2023-a-m19-1003",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_M19_1003",
+    "text": "2023_A_M19_1003"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-m22-0201",
+    "href": "structural_figures.html#2023-a-m22-0201",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_M22_0201",
+    "text": "2023_A_M22_0201"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-m22-0213",
+    "href": "structural_figures.html#2023-a-m22-0213",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_M22_0213",
+    "text": "2023_A_M22_0213"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-m22-1313",
+    "href": "structural_figures.html#2023-a-m22-1313",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_M22_1313",
+    "text": "2023_A_M22_1313"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-n11-0306",
+    "href": "structural_figures.html#2023-a-n11-0306",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_N11_0306",
+    "text": "2023_A_N11_0306"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-n11-1510",
+    "href": "structural_figures.html#2023-a-n11-1510",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_N11_1510",
+    "text": "2023_A_N11_1510"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-n13-0505",
+    "href": "structural_figures.html#2023-a-n13-0505",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_N13_0505",
+    "text": "2023_A_N13_0505"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-n13-0808",
+    "href": "structural_figures.html#2023-a-n13-0808",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_N13_0808",
+    "text": "2023_A_N13_0808"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-n14-0415",
+    "href": "structural_figures.html#2023-a-n14-0415",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_N14_0415",
+    "text": "2023_A_N14_0415"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-n14-1019",
+    "href": "structural_figures.html#2023-a-n14-1019",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_N14_1019",
+    "text": "2023_A_N14_1019"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-n14-1311",
+    "href": "structural_figures.html#2023-a-n14-1311",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_N14_1311",
+    "text": "2023_A_N14_1311"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-n27-0104",
+    "href": "structural_figures.html#2023-a-n27-0104",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_N27_0104",
+    "text": "2023_A_N27_0104"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-n27-0306",
+    "href": "structural_figures.html#2023-a-n27-0306",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_N27_0306",
+    "text": "2023_A_N27_0306"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-n27-0804",
+    "href": "structural_figures.html#2023-a-n27-0804",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_N27_0804",
+    "text": "2023_A_N27_0804"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-n27-1107",
+    "href": "structural_figures.html#2023-a-n27-1107",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_N27_1107",
+    "text": "2023_A_N27_1107"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-n27-1512",
+    "href": "structural_figures.html#2023-a-n27-1512",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_N27_1512",
+    "text": "2023_A_N27_1512"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-o11-0303",
+    "href": "structural_figures.html#2023-a-o11-0303",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_O11_0303",
+    "text": "2023_A_O11_0303"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-o12-0016",
+    "href": "structural_figures.html#2023-a-o12-0016",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_O12_0016",
+    "text": "2023_A_O12_0016"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-o12-0712",
+    "href": "structural_figures.html#2023-a-o12-0712",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_O12_0712",
+    "text": "2023_A_O12_0712"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-o12-0817",
+    "href": "structural_figures.html#2023-a-o12-0817",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_O12_0817",
+    "text": "2023_A_O12_0817"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-o12-1012",
+    "href": "structural_figures.html#2023-a-o12-1012",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_O12_1012",
+    "text": "2023_A_O12_1012"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-o12-1205",
+    "href": "structural_figures.html#2023-a-o12-1205",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_O12_1205",
+    "text": "2023_A_O12_1205"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-o25-1006",
+    "href": "structural_figures.html#2023-a-o25-1006",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_O25_1006",
+    "text": "2023_A_O25_1006"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-o26-0406",
+    "href": "structural_figures.html#2023-a-o26-0406",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_O26_0406",
+    "text": "2023_A_O26_0406"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-o26-1203",
+    "href": "structural_figures.html#2023-a-o26-1203",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_O26_1203",
+    "text": "2023_A_O26_1203"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-o26-1214",
+    "href": "structural_figures.html#2023-a-o26-1214",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_O26_1214",
+    "text": "2023_A_O26_1214"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-o26-1301",
+    "href": "structural_figures.html#2023-a-o26-1301",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_O26_1301",
+    "text": "2023_A_O26_1301"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-o26-1706",
+    "href": "structural_figures.html#2023-a-o26-1706",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_O26_1706",
+    "text": "2023_A_O26_1706"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-o27-1218",
+    "href": "structural_figures.html#2023-a-o27-1218",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_O27_1218",
+    "text": "2023_A_O27_1218"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-o27-1507",
+    "href": "structural_figures.html#2023-a-o27-1507",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_O27_1507",
+    "text": "2023_A_O27_1507"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-o28-1715",
+    "href": "structural_figures.html#2023-a-o28-1715",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_O28_1715",
+    "text": "2023_A_O28_1715"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-p19-0113",
+    "href": "structural_figures.html#2023-a-p19-0113",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_P19_0113",
+    "text": "2023_A_P19_0113"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-p19-0410",
+    "href": "structural_figures.html#2023-a-p19-0410",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_P19_0410",
+    "text": "2023_A_P19_0410"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-p26-0614",
+    "href": "structural_figures.html#2023-a-p26-0614",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_P26_0614",
+    "text": "2023_A_P26_0614"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-p26-0818",
+    "href": "structural_figures.html#2023-a-p26-0818",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_P26_0818",
+    "text": "2023_A_P26_0818"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-q20-0205",
+    "href": "structural_figures.html#2023-a-q20-0205",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_Q20_0205",
+    "text": "2023_A_Q20_0205"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-q20-0317",
+    "href": "structural_figures.html#2023-a-q20-0317",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_Q20_0317",
+    "text": "2023_A_Q20_0317"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-q20-0403",
+    "href": "structural_figures.html#2023-a-q20-0403",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_Q20_0403",
+    "text": "2023_A_Q20_0403"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-q20-0415",
+    "href": "structural_figures.html#2023-a-q20-0415",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_Q20_0415",
+    "text": "2023_A_Q20_0415"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-q20-0419",
+    "href": "structural_figures.html#2023-a-q20-0419",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_Q20_0419",
+    "text": "2023_A_Q20_0419"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-q20-0705",
+    "href": "structural_figures.html#2023-a-q20-0705",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_Q20_0705",
+    "text": "2023_A_Q20_0705"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-s10-0004",
+    "href": "structural_figures.html#2023-a-s10-0004",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_S10_0004",
+    "text": "2023_A_S10_0004"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-s10-0716",
+    "href": "structural_figures.html#2023-a-s10-0716",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_S10_0716",
+    "text": "2023_A_S10_0716"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-s9-0404",
+    "href": "structural_figures.html#2023-a-s9-0404",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_S9_0404",
+    "text": "2023_A_S9_0404"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-s9-1108",
+    "href": "structural_figures.html#2023-a-s9-1108",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_S9_1108",
+    "text": "2023_A_S9_1108"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-t10-0617",
+    "href": "structural_figures.html#2023-a-t10-0617",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_T10_0617",
+    "text": "2023_A_T10_0617"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-w14-0614",
+    "href": "structural_figures.html#2023-a-w14-0614",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_W14_0614",
+    "text": "2023_A_W14_0614"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-w14-1511",
+    "href": "structural_figures.html#2023-a-w14-1511",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_W14_1511",
+    "text": "2023_A_W14_1511"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-x14-0102",
+    "href": "structural_figures.html#2023-a-x14-0102",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_X14_0102",
+    "text": "2023_A_X14_0102"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-x14-0409",
+    "href": "structural_figures.html#2023-a-x14-0409",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_X14_0409",
+    "text": "2023_A_X14_0409"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-x14-0808",
+    "href": "structural_figures.html#2023-a-x14-0808",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_X14_0808",
+    "text": "2023_A_X14_0808"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-x14-1408",
+    "href": "structural_figures.html#2023-a-x14-1408",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_X14_1408",
+    "text": "2023_A_X14_1408"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-x14-1503",
+    "href": "structural_figures.html#2023-a-x14-1503",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_X14_1503",
+    "text": "2023_A_X14_1503"
+  },
+  {
+    "objectID": "structural_figures.html#2023-a-x14-1511",
+    "href": "structural_figures.html#2023-a-x14-1511",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_X14_1511",
+    "text": "2023_A_X14_1511"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-e26-1805",
+    "href": "structural_figures.html#2024-b-e26-1805",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_E26_1805",
+    "text": "2024_B_E26_1805"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-f27-0310",
+    "href": "structural_figures.html#2024-b-f27-0310",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_F27_0310",
+    "text": "2024_B_F27_0310"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-f27-0403",
+    "href": "structural_figures.html#2024-b-f27-0403",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_F27_0403",
+    "text": "2024_B_F27_0403"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-f27-0519",
+    "href": "structural_figures.html#2024-b-f27-0519",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_F27_0519",
+    "text": "2024_B_F27_0519"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-f27-0609",
+    "href": "structural_figures.html#2024-b-f27-0609",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_F27_0609",
+    "text": "2024_B_F27_0609"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-f27-0818",
+    "href": "structural_figures.html#2024-b-f27-0818",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_F27_0818",
+    "text": "2024_B_F27_0818"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-f28-0600",
+    "href": "structural_figures.html#2024-b-f28-0600",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_F28_0600",
+    "text": "2024_B_F28_0600"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-f28-1412",
+    "href": "structural_figures.html#2024-b-f28-1412",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_F28_1412",
+    "text": "2024_B_F28_1412"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-f28-1510",
+    "href": "structural_figures.html#2024-b-f28-1510",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_F28_1510",
+    "text": "2024_B_F28_1510"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-f29-0307",
+    "href": "structural_figures.html#2024-b-f29-0307",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_F29_0307",
+    "text": "2024_B_F29_0307"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-g28-0206",
+    "href": "structural_figures.html#2024-b-g28-0206",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_G28_0206",
+    "text": "2024_B_G28_0206"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-g28-0513",
+    "href": "structural_figures.html#2024-b-g28-0513",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_G28_0513",
+    "text": "2024_B_G28_0513"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-g29-0710",
+    "href": "structural_figures.html#2024-b-g29-0710",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_G29_0710",
+    "text": "2024_B_G29_0710"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-g29-0807",
+    "href": "structural_figures.html#2024-b-g29-0807",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_G29_0807",
+    "text": "2024_B_G29_0807"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-i25-0401",
+    "href": "structural_figures.html#2024-b-i25-0401",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_I25_0401",
+    "text": "2024_B_I25_0401"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-i25-0607",
+    "href": "structural_figures.html#2024-b-i25-0607",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_I25_0607",
+    "text": "2024_B_I25_0607"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-j25-0009",
+    "href": "structural_figures.html#2024-b-j25-0009",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_J25_0009",
+    "text": "2024_B_J25_0009"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-j25-0508",
+    "href": "structural_figures.html#2024-b-j25-0508",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_J25_0508",
+    "text": "2024_B_J25_0508"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-j25-0818",
+    "href": "structural_figures.html#2024-b-j25-0818",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_J25_0818",
+    "text": "2024_B_J25_0818"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-j25-1004",
+    "href": "structural_figures.html#2024-b-j25-1004",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_J25_1004",
+    "text": "2024_B_J25_1004"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-j25-1211",
+    "href": "structural_figures.html#2024-b-j25-1211",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_J25_1211",
+    "text": "2024_B_J25_1211"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-j25-1300",
+    "href": "structural_figures.html#2024-b-j25-1300",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_J25_1300",
+    "text": "2024_B_J25_1300"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-l21-0103",
+    "href": "structural_figures.html#2024-b-l21-0103",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_L21_0103",
+    "text": "2024_B_L21_0103"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-l21-0211",
+    "href": "structural_figures.html#2024-b-l21-0211",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_L21_0211",
+    "text": "2024_B_L21_0211"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-l21-0403",
+    "href": "structural_figures.html#2024-b-l21-0403",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_L21_0403",
+    "text": "2024_B_L21_0403"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-l21-0505",
+    "href": "structural_figures.html#2024-b-l21-0505",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_L21_0505",
+    "text": "2024_B_L21_0505"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-l21-1010",
+    "href": "structural_figures.html#2024-b-l21-1010",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_L21_1010",
+    "text": "2024_B_L21_1010"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-l21-1406",
+    "href": "structural_figures.html#2024-b-l21-1406",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_L21_1406",
+    "text": "2024_B_L21_1406"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-m22-0203",
+    "href": "structural_figures.html#2024-b-m22-0203",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_M22_0203",
+    "text": "2024_B_M22_0203"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-m22-1001",
+    "href": "structural_figures.html#2024-b-m22-1001",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_M22_1001",
+    "text": "2024_B_M22_1001"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-m7-1601",
+    "href": "structural_figures.html#2024-b-m7-1601",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_M7_1601",
+    "text": "2024_B_M7_1601"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-m7-1800",
+    "href": "structural_figures.html#2024-b-m7-1800",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_M7_1800",
+    "text": "2024_B_M7_1800"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-m8-1717",
+    "href": "structural_figures.html#2024-b-m8-1717",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_M8_1717",
+    "text": "2024_B_M8_1717"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-m8-1809",
+    "href": "structural_figures.html#2024-b-m8-1809",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_M8_1809",
+    "text": "2024_B_M8_1809"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-n8-0212",
+    "href": "structural_figures.html#2024-b-n8-0212",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_N8_0212",
+    "text": "2024_B_N8_0212"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-n8-0615",
+    "href": "structural_figures.html#2024-b-n8-0615",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_N8_0615",
+    "text": "2024_B_N8_0615"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-n8-0904",
+    "href": "structural_figures.html#2024-b-n8-0904",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_N8_0904",
+    "text": "2024_B_N8_0904"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-n8-1202",
+    "href": "structural_figures.html#2024-b-n8-1202",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_N8_1202",
+    "text": "2024_B_N8_1202"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-o26-0208",
+    "href": "structural_figures.html#2024-b-o26-0208",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_O26_0208",
+    "text": "2024_B_O26_0208"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-o26-1001",
+    "href": "structural_figures.html#2024-b-o26-1001",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_O26_1001",
+    "text": "2024_B_O26_1001"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-o26-1505",
+    "href": "structural_figures.html#2024-b-o26-1505",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_O26_1505",
+    "text": "2024_B_O26_1505"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-o26-1509",
+    "href": "structural_figures.html#2024-b-o26-1509",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_O26_1509",
+    "text": "2024_B_O26_1509"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-o26-1705",
+    "href": "structural_figures.html#2024-b-o26-1705",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_O26_1705",
+    "text": "2024_B_O26_1705"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-o26-1716",
+    "href": "structural_figures.html#2024-b-o26-1716",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_O26_1716",
+    "text": "2024_B_O26_1716"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-o27-0502",
+    "href": "structural_figures.html#2024-b-o27-0502",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_O27_0502",
+    "text": "2024_B_O27_0502"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-o27-1000",
+    "href": "structural_figures.html#2024-b-o27-1000",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_O27_1000",
+    "text": "2024_B_O27_1000"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-p22-1510",
+    "href": "structural_figures.html#2024-b-p22-1510",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_P22_1510",
+    "text": "2024_B_P22_1510"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-p22-1607",
+    "href": "structural_figures.html#2024-b-p22-1607",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_P22_1607",
+    "text": "2024_B_P22_1607"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-p22-1811",
+    "href": "structural_figures.html#2024-b-p22-1811",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_P22_1811",
+    "text": "2024_B_P22_1811"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-p23-1713",
+    "href": "structural_figures.html#2024-b-p23-1713",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_P23_1713",
+    "text": "2024_B_P23_1713"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-p28-0405",
+    "href": "structural_figures.html#2024-b-p28-0405",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_P28_0405",
+    "text": "2024_B_P28_0405"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-p29-0018",
+    "href": "structural_figures.html#2024-b-p29-0018",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_P29_0018",
+    "text": "2024_B_P29_0018"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-p29-0712",
+    "href": "structural_figures.html#2024-b-p29-0712",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_P29_0712",
+    "text": "2024_B_P29_0712"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-p29-1012",
+    "href": "structural_figures.html#2024-b-p29-1012",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_P29_1012",
+    "text": "2024_B_P29_1012"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-q17-0303",
+    "href": "structural_figures.html#2024-b-q17-0303",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_Q17_0303",
+    "text": "2024_B_Q17_0303"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-q17-1213",
+    "href": "structural_figures.html#2024-b-q17-1213",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_Q17_1213",
+    "text": "2024_B_Q17_1213"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-q18-0515",
+    "href": "structural_figures.html#2024-b-q18-0515",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_Q18_0515",
+    "text": "2024_B_Q18_0515"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-q18-1009",
+    "href": "structural_figures.html#2024-b-q18-1009",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_Q18_1009",
+    "text": "2024_B_Q18_1009"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-q18-1515",
+    "href": "structural_figures.html#2024-b-q18-1515",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_Q18_1515",
+    "text": "2024_B_Q18_1515"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-q23-0700",
+    "href": "structural_figures.html#2024-b-q23-0700",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_Q23_0700",
+    "text": "2024_B_Q23_0700"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-q23-0804",
+    "href": "structural_figures.html#2024-b-q23-0804",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_Q23_0804",
+    "text": "2024_B_Q23_0804"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-q26-0813",
+    "href": "structural_figures.html#2024-b-q26-0813",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_Q26_0813",
+    "text": "2024_B_Q26_0813"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-q26-1005",
+    "href": "structural_figures.html#2024-b-q26-1005",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_Q26_1005",
+    "text": "2024_B_Q26_1005"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-q26-1213",
+    "href": "structural_figures.html#2024-b-q26-1213",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_Q26_1213",
+    "text": "2024_B_Q26_1213"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-q27-0410",
+    "href": "structural_figures.html#2024-b-q27-0410",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_Q27_0410",
+    "text": "2024_B_Q27_0410"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-q27-1409",
+    "href": "structural_figures.html#2024-b-q27-1409",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_Q27_1409",
+    "text": "2024_B_Q27_1409"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-q29-1316",
+    "href": "structural_figures.html#2024-b-q29-1316",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_Q29_1316",
+    "text": "2024_B_Q29_1316"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-q29-1702",
+    "href": "structural_figures.html#2024-b-q29-1702",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_Q29_1702",
+    "text": "2024_B_Q29_1702"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-q3-0117",
+    "href": "structural_figures.html#2024-b-q3-0117",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_Q3_0117",
+    "text": "2024_B_Q3_0117"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-q3-0608",
+    "href": "structural_figures.html#2024-b-q3-0608",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_Q3_0608",
+    "text": "2024_B_Q3_0608"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-q3-1408",
+    "href": "structural_figures.html#2024-b-q3-1408",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_Q3_1408",
+    "text": "2024_B_Q3_1408"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-r17-0511",
+    "href": "structural_figures.html#2024-b-r17-0511",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_R17_0511",
+    "text": "2024_B_R17_0511"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-r17-0604",
+    "href": "structural_figures.html#2024-b-r17-0604",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_R17_0604",
+    "text": "2024_B_R17_0604"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-r17-1202",
+    "href": "structural_figures.html#2024-b-r17-1202",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_R17_1202",
+    "text": "2024_B_R17_1202"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-r2-0413",
+    "href": "structural_figures.html#2024-b-r2-0413",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_R2_0413",
+    "text": "2024_B_R2_0413"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-r2-0502",
+    "href": "structural_figures.html#2024-b-r2-0502",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_R2_0502",
+    "text": "2024_B_R2_0502"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-r2-0713",
+    "href": "structural_figures.html#2024-b-r2-0713",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_R2_0713",
+    "text": "2024_B_R2_0713"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-r28-0116",
+    "href": "structural_figures.html#2024-b-r28-0116",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_R28_0116",
+    "text": "2024_B_R28_0116"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-r28-0318",
+    "href": "structural_figures.html#2024-b-r28-0318",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_R28_0318",
+    "text": "2024_B_R28_0318"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-r28-1010",
+    "href": "structural_figures.html#2024-b-r28-1010",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_R28_1010",
+    "text": "2024_B_R28_1010"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-r29-0713",
+    "href": "structural_figures.html#2024-b-r29-0713",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_R29_0713",
+    "text": "2024_B_R29_0713"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-r29-1009",
+    "href": "structural_figures.html#2024-b-r29-1009",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_R29_1009",
+    "text": "2024_B_R29_1009"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-r3-1113",
+    "href": "structural_figures.html#2024-b-r3-1113",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_R3_1113",
+    "text": "2024_B_R3_1113"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-r3-1414",
+    "href": "structural_figures.html#2024-b-r3-1414",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_R3_1414",
+    "text": "2024_B_R3_1414"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-s12-0310",
+    "href": "structural_figures.html#2024-b-s12-0310",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_S12_0310",
+    "text": "2024_B_S12_0310"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-s12-0708",
+    "href": "structural_figures.html#2024-b-s12-0708",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_S12_0708",
+    "text": "2024_B_S12_0708"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-s12-1209",
+    "href": "structural_figures.html#2024-b-s12-1209",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_S12_1209",
+    "text": "2024_B_S12_1209"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-s12-1213",
+    "href": "structural_figures.html#2024-b-s12-1213",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_S12_1213",
+    "text": "2024_B_S12_1213"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-s12-1504",
+    "href": "structural_figures.html#2024-b-s12-1504",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_S12_1504",
+    "text": "2024_B_S12_1504"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-s13-1419",
+    "href": "structural_figures.html#2024-b-s13-1419",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_S13_1419",
+    "text": "2024_B_S13_1419"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-s22-0509",
+    "href": "structural_figures.html#2024-b-s22-0509",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_S22_0509",
+    "text": "2024_B_S22_0509"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-s22-1404",
+    "href": "structural_figures.html#2024-b-s22-1404",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_S22_1404",
+    "text": "2024_B_S22_1404"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-s28-0211",
+    "href": "structural_figures.html#2024-b-s28-0211",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_S28_0211",
+    "text": "2024_B_S28_0211"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-s28-0600",
+    "href": "structural_figures.html#2024-b-s28-0600",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_S28_0600",
+    "text": "2024_B_S28_0600"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-s28-0707",
+    "href": "structural_figures.html#2024-b-s28-0707",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_S28_0707",
+    "text": "2024_B_S28_0707"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-t13-1117",
+    "href": "structural_figures.html#2024-b-t13-1117",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_T13_1117",
+    "text": "2024_B_T13_1117"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-t13-1612",
+    "href": "structural_figures.html#2024-b-t13-1612",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_T13_1612",
+    "text": "2024_B_T13_1612"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-t22-0602",
+    "href": "structural_figures.html#2024-b-t22-0602",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_T22_0602",
+    "text": "2024_B_T22_0602"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-t22-0704",
+    "href": "structural_figures.html#2024-b-t22-0704",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_T22_0704",
+    "text": "2024_B_T22_0704"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-t22-1005",
+    "href": "structural_figures.html#2024-b-t22-1005",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_T22_1005",
+    "text": "2024_B_T22_1005"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-t22-1708",
+    "href": "structural_figures.html#2024-b-t22-1708",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_T22_1708",
+    "text": "2024_B_T22_1708"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-t22-1714",
+    "href": "structural_figures.html#2024-b-t22-1714",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_T22_1714",
+    "text": "2024_B_T22_1714"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-t22-1915",
+    "href": "structural_figures.html#2024-b-t22-1915",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_T22_1915",
+    "text": "2024_B_T22_1915"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-t29-0912",
+    "href": "structural_figures.html#2024-b-t29-0912",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_T29_0912",
+    "text": "2024_B_T29_0912"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-t29-1216",
+    "href": "structural_figures.html#2024-b-t29-1216",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_T29_1216",
+    "text": "2024_B_T29_1216"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-u19-1003",
+    "href": "structural_figures.html#2024-b-u19-1003",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_U19_1003",
+    "text": "2024_B_U19_1003"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-u19-1111",
+    "href": "structural_figures.html#2024-b-u19-1111",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_U19_1111",
+    "text": "2024_B_U19_1111"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-u19-1116",
+    "href": "structural_figures.html#2024-b-u19-1116",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_U19_1116",
+    "text": "2024_B_U19_1116"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-u24-0406",
+    "href": "structural_figures.html#2024-b-u24-0406",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_U24_0406",
+    "text": "2024_B_U24_0406"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-u24-1117",
+    "href": "structural_figures.html#2024-b-u24-1117",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_U24_1117",
+    "text": "2024_B_U24_1117"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-u24-1403",
+    "href": "structural_figures.html#2024-b-u24-1403",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_U24_1403",
+    "text": "2024_B_U24_1403"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-u28-0210",
+    "href": "structural_figures.html#2024-b-u28-0210",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_U28_0210",
+    "text": "2024_B_U28_0210"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-u28-0404",
+    "href": "structural_figures.html#2024-b-u28-0404",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_U28_0404",
+    "text": "2024_B_U28_0404"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-u29-0319",
+    "href": "structural_figures.html#2024-b-u29-0319",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_U29_0319",
+    "text": "2024_B_U29_0319"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-u29-0804",
+    "href": "structural_figures.html#2024-b-u29-0804",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_U29_0804",
+    "text": "2024_B_U29_0804"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-u29-1216",
+    "href": "structural_figures.html#2024-b-u29-1216",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_U29_1216",
+    "text": "2024_B_U29_1216"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-v18-0216",
+    "href": "structural_figures.html#2024-b-v18-0216",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_V18_0216",
+    "text": "2024_B_V18_0216"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-v18-0704",
+    "href": "structural_figures.html#2024-b-v18-0704",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_V18_0704",
+    "text": "2024_B_V18_0704"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-v18-0714",
+    "href": "structural_figures.html#2024-b-v18-0714",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_V18_0714",
+    "text": "2024_B_V18_0714"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-v19-0217",
+    "href": "structural_figures.html#2024-b-v19-0217",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_V19_0217",
+    "text": "2024_B_V19_0217"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-v19-0503",
+    "href": "structural_figures.html#2024-b-v19-0503",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_V19_0503",
+    "text": "2024_B_V19_0503"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-v22-0317",
+    "href": "structural_figures.html#2024-b-v22-0317",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_V22_0317",
+    "text": "2024_B_V22_0317"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-v22-0510",
+    "href": "structural_figures.html#2024-b-v22-0510",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_V22_0510",
+    "text": "2024_B_V22_0510"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-v22-0517",
+    "href": "structural_figures.html#2024-b-v22-0517",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_V22_0517",
+    "text": "2024_B_V22_0517"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-v22-0901",
+    "href": "structural_figures.html#2024-b-v22-0901",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_V22_0901",
+    "text": "2024_B_V22_0901"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-v22-1008",
+    "href": "structural_figures.html#2024-b-v22-1008",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_V22_1008",
+    "text": "2024_B_V22_1008"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-v22-1803",
+    "href": "structural_figures.html#2024-b-v22-1803",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_V22_1803",
+    "text": "2024_B_V22_1803"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-v23-0416",
+    "href": "structural_figures.html#2024-b-v23-0416",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_V23_0416",
+    "text": "2024_B_V23_0416"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-v23-0809",
+    "href": "structural_figures.html#2024-b-v23-0809",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_V23_0809",
+    "text": "2024_B_V23_0809"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-v24-1105",
+    "href": "structural_figures.html#2024-b-v24-1105",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_V24_1105",
+    "text": "2024_B_V24_1105"
+  },
+  {
+    "objectID": "structural_figures.html#2024-b-v24-1312",
+    "href": "structural_figures.html#2024-b-v24-1312",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_V24_1312",
+    "text": "2024_B_V24_1312"
+  },
+  {
+    "objectID": "figures.html",
+    "href": "figures.html",
+    "title": "TSQ Structural Figures",
+    "section": "",
+    "text": "2023_A_C32_0110\n2023_A_C32_1612\n2023_A_C33_0609\n2023_A_C33_0918\n2023_A_D32_1401\n2023_A_D33_0407\n2023_A_D33_0610\n2023_A_D33_0703\n2023_A_E34_0216\n2023_A_E34_0604\n2023_A_F21_0317\n2023_A_F21_1014\n2023_A_F27_0517\n2023_A_F27_1201\n2023_A_F35_0306\n2023_A_F35_1113\n2023_A_F35_1814\n2023_A_G21_0406\n2023_A_G21_0410\n2023_A_G21_0812\n2023_A_G21_1008\n2023_A_G21_1809\n2023_A_G21_1816\n2023_A_G26_0116\n2023_A_G26_0214\n2023_A_G26_0512\n2023_A_G26_0606\n2023_A_G26_0912\n2023_A_G26_1103\n2023_A_G31_1908\n2023_A_H27_0005\n2023_A_H27_0307\n2023_A_H27_0318\n2023_A_H27_1710\n2023_A_H29_1604\n2023_A_H29_1606\n2023_A_H30_0315\n2023_A_H30_0606\n2023_A_H30_0611\n2023_A_H30_0709\n2023_A_H30_1010\n2023_A_H31_0403\n2023_A_H31_0901\n2023_A_I26_0010\n2023_A_I26_1711\n2023_A_I27_0007\n2023_A_I27_0803\n2023_A_I28_0412\n2023_A_I29_0208\n2023_A_I29_0504\n2023_A_I29_0610\n2023_A_I29_0717\n2023_A_I29_1218\n2023_A_I29_1303\n2023_A_L11_0812\n2023_A_L11_1812\n2023_A_L19_1706\n2023_A_L21_0600\n2023_A_L21_0816\n2023_A_L21_1601\n2023_A_L22_0115\n2023_A_L22_0614\n2023_A_M11_0218\n2023_A_M11_0514\n2023_A_M11_1108\n2023_A_M11_1613\n2023_A_M11_1616\n2023_A_M11_1802\n2023_A_M13_0909\n2023_A_M13_1309\n2023_A_M13_1816\n2023_A_M19_0003\n2023_A_M19_0102\n2023_A_M19_0605\n2023_A_M19_0709\n2023_A_M19_1003\n2023_A_M22_0201\n2023_A_M22_0213\n2023_A_M22_1313\n2023_A_N11_0306\n2023_A_N11_1510\n2023_A_N13_0505\n2023_A_N13_0808\n2023_A_N14_0415\n2023_A_N14_1019\n2023_A_N14_1311\n2023_A_N27_0104\n2023_A_N27_0306\n2023_A_N27_0804\n2023_A_N27_1107\n2023_A_N27_1512\n2023_A_O11_0303\n2023_A_O12_0016\n2023_A_O12_0712\n2023_A_O12_0817\n2023_A_O12_1012\n2023_A_O12_1205\n2023_A_O25_1006\n2023_A_O26_0406\n2023_A_O26_1203\n2023_A_O26_1214\n2023_A_O26_1301\n2023_A_O26_1706\n2023_A_O27_1218\n2023_A_O27_1507\n2023_A_O28_1715\n2023_A_P19_0113\n2023_A_P19_0410\n2023_A_P26_0614\n2023_A_P26_0818\n2023_A_Q20_0205\n2023_A_Q20_0317\n2023_A_Q20_0403\n2023_A_Q20_0415\n2023_A_Q20_0419\n2023_A_Q20_0705\n2023_A_S10_0004\n2023_A_S10_0716\n2023_A_S9_0404\n2023_A_S9_1108\n2023_A_T10_0617\n2023_A_W14_0614\n2023_A_W14_1511\n2023_A_X14_0102\n2023_A_X14_0409\n2023_A_X14_0808\n2023_A_X14_1408\n2023_A_X14_1503\n2023_A_X14_1511\n2024_B_E26_1805\n2024_B_F27_0310\n2024_B_F27_0403\n2024_B_F27_0519\n2024_B_F27_0609\n2024_B_F27_0818\n2024_B_F28_0600\n2024_B_F28_1412\n2024_B_F28_1510\n2024_B_F29_0307\n2024_B_G28_0206\n2024_B_G28_0513\n2024_B_G29_0710\n2024_B_G29_0807\n2024_B_I25_0401\n2024_B_I25_0607\n2024_B_J25_0009\n2024_B_J25_0508\n2024_B_J25_0818\n2024_B_J25_1004\n2024_B_J25_1211\n2024_B_J25_1300\n2024_B_L21_0103\n2024_B_L21_0211\n2024_B_L21_0403\n2024_B_L21_0505\n2024_B_L21_1010\n2024_B_L21_1406\n2024_B_M22_0203\n2024_B_M22_1001\n2024_B_M7_1601\n2024_B_M7_1800\n2024_B_M8_1717\n2024_B_M8_1809\n2024_B_N8_0212\n2024_B_N8_0615\n2024_B_N8_0904\n2024_B_N8_1202\n2024_B_O26_0208\n2024_B_O26_1001\n2024_B_O26_1505\n2024_B_O26_1509\n2024_B_O26_1705\n2024_B_O26_1716\n2024_B_O27_0502\n2024_B_O27_1000\n2024_B_P22_1510\n2024_B_P22_1607\n2024_B_P22_1811\n2024_B_P23_1713\n2024_B_P28_0405\n2024_B_P29_0018\n2024_B_P29_0712\n2024_B_P29_1012\n2024_B_Q17_0303\n2024_B_Q17_1213\n2024_B_Q18_0515\n2024_B_Q18_1009\n2024_B_Q18_1515\n2024_B_Q23_0700\n2024_B_Q23_0804\n2024_B_Q26_0813\n2024_B_Q26_1005\n2024_B_Q26_1213\n2024_B_Q27_0410\n2024_B_Q27_1409\n2024_B_Q29_1316\n2024_B_Q29_1702\n2024_B_Q3_0117\n2024_B_Q3_0608\n2024_B_Q3_1408\n2024_B_R17_0511\n2024_B_R17_0604\n2024_B_R17_1202\n2024_B_R2_0413\n2024_B_R2_0502\n2024_B_R2_0713\n2024_B_R28_0116\n2024_B_R28_0318\n2024_B_R28_1010\n2024_B_R29_0713\n2024_B_R29_1009\n2024_B_R3_1113\n2024_B_R3_1414\n2024_B_S12_0310\n2024_B_S12_0708\n2024_B_S12_1209\n2024_B_S12_1213\n2024_B_S12_1504\n2024_B_S13_1419\n2024_B_S22_0509\n2024_B_S22_1404\n2024_B_S28_0211\n2024_B_S28_0600\n2024_B_S28_0707\n2024_B_T13_1117\n2024_B_T13_1612\n2024_B_T22_0602\n2024_B_T22_0704\n2024_B_T22_1005\n2024_B_T22_1708\n2024_B_T22_1714\n2024_B_T22_1915\n2024_B_T29_0912\n2024_B_T29_1216\n2024_B_U19_1003\n2024_B_U19_1111\n2024_B_U19_1116\n2024_B_U24_0406\n2024_B_U24_1117\n2024_B_U24_1403\n2024_B_U28_0210\n2024_B_U28_0404\n2024_B_U29_0319\n2024_B_U29_0804\n2024_B_U29_1216\n2024_B_V18_0216\n2024_B_V18_0704\n2024_B_V18_0714\n2024_B_V19_0217\n2024_B_V19_0503\n2024_B_V22_0317\n2024_B_V22_0510\n2024_B_V22_0517\n2024_B_V22_0901\n2024_B_V22_1008\n2024_B_V22_1803\n2024_B_V23_0416\n2024_B_V23_0809\n2024_B_V24_1105\n2024_B_V24_1312"
+  },
+  {
+    "objectID": "figures.html#index",
+    "href": "figures.html#index",
+    "title": "TSQ Structural Figures",
+    "section": "",
+    "text": "2023_A_C32_0110\n2023_A_C32_1612\n2023_A_C33_0609\n2023_A_C33_0918\n2023_A_D32_1401\n2023_A_D33_0407\n2023_A_D33_0610\n2023_A_D33_0703\n2023_A_E34_0216\n2023_A_E34_0604\n2023_A_F21_0317\n2023_A_F21_1014\n2023_A_F27_0517\n2023_A_F27_1201\n2023_A_F35_0306\n2023_A_F35_1113\n2023_A_F35_1814\n2023_A_G21_0406\n2023_A_G21_0410\n2023_A_G21_0812\n2023_A_G21_1008\n2023_A_G21_1809\n2023_A_G21_1816\n2023_A_G26_0116\n2023_A_G26_0214\n2023_A_G26_0512\n2023_A_G26_0606\n2023_A_G26_0912\n2023_A_G26_1103\n2023_A_G31_1908\n2023_A_H27_0005\n2023_A_H27_0307\n2023_A_H27_0318\n2023_A_H27_1710\n2023_A_H29_1604\n2023_A_H29_1606\n2023_A_H30_0315\n2023_A_H30_0606\n2023_A_H30_0611\n2023_A_H30_0709\n2023_A_H30_1010\n2023_A_H31_0403\n2023_A_H31_0901\n2023_A_I26_0010\n2023_A_I26_1711\n2023_A_I27_0007\n2023_A_I27_0803\n2023_A_I28_0412\n2023_A_I29_0208\n2023_A_I29_0504\n2023_A_I29_0610\n2023_A_I29_0717\n2023_A_I29_1218\n2023_A_I29_1303\n2023_A_L11_0812\n2023_A_L11_1812\n2023_A_L19_1706\n2023_A_L21_0600\n2023_A_L21_0816\n2023_A_L21_1601\n2023_A_L22_0115\n2023_A_L22_0614\n2023_A_M11_0218\n2023_A_M11_0514\n2023_A_M11_1108\n2023_A_M11_1613\n2023_A_M11_1616\n2023_A_M11_1802\n2023_A_M13_0909\n2023_A_M13_1309\n2023_A_M13_1816\n2023_A_M19_0003\n2023_A_M19_0102\n2023_A_M19_0605\n2023_A_M19_0709\n2023_A_M19_1003\n2023_A_M22_0201\n2023_A_M22_0213\n2023_A_M22_1313\n2023_A_N11_0306\n2023_A_N11_1510\n2023_A_N13_0505\n2023_A_N13_0808\n2023_A_N14_0415\n2023_A_N14_1019\n2023_A_N14_1311\n2023_A_N27_0104\n2023_A_N27_0306\n2023_A_N27_0804\n2023_A_N27_1107\n2023_A_N27_1512\n2023_A_O11_0303\n2023_A_O12_0016\n2023_A_O12_0712\n2023_A_O12_0817\n2023_A_O12_1012\n2023_A_O12_1205\n2023_A_O25_1006\n2023_A_O26_0406\n2023_A_O26_1203\n2023_A_O26_1214\n2023_A_O26_1301\n2023_A_O26_1706\n2023_A_O27_1218\n2023_A_O27_1507\n2023_A_O28_1715\n2023_A_P19_0113\n2023_A_P19_0410\n2023_A_P26_0614\n2023_A_P26_0818\n2023_A_Q20_0205\n2023_A_Q20_0317\n2023_A_Q20_0403\n2023_A_Q20_0415\n2023_A_Q20_0419\n2023_A_Q20_0705\n2023_A_S10_0004\n2023_A_S10_0716\n2023_A_S9_0404\n2023_A_S9_1108\n2023_A_T10_0617\n2023_A_W14_0614\n2023_A_W14_1511\n2023_A_X14_0102\n2023_A_X14_0409\n2023_A_X14_0808\n2023_A_X14_1408\n2023_A_X14_1503\n2023_A_X14_1511\n2024_B_E26_1805\n2024_B_F27_0310\n2024_B_F27_0403\n2024_B_F27_0519\n2024_B_F27_0609\n2024_B_F27_0818\n2024_B_F28_0600\n2024_B_F28_1412\n2024_B_F28_1510\n2024_B_F29_0307\n2024_B_G28_0206\n2024_B_G28_0513\n2024_B_G29_0710\n2024_B_G29_0807\n2024_B_I25_0401\n2024_B_I25_0607\n2024_B_J25_0009\n2024_B_J25_0508\n2024_B_J25_0818\n2024_B_J25_1004\n2024_B_J25_1211\n2024_B_J25_1300\n2024_B_L21_0103\n2024_B_L21_0211\n2024_B_L21_0403\n2024_B_L21_0505\n2024_B_L21_1010\n2024_B_L21_1406\n2024_B_M22_0203\n2024_B_M22_1001\n2024_B_M7_1601\n2024_B_M7_1800\n2024_B_M8_1717\n2024_B_M8_1809\n2024_B_N8_0212\n2024_B_N8_0615\n2024_B_N8_0904\n2024_B_N8_1202\n2024_B_O26_0208\n2024_B_O26_1001\n2024_B_O26_1505\n2024_B_O26_1509\n2024_B_O26_1705\n2024_B_O26_1716\n2024_B_O27_0502\n2024_B_O27_1000\n2024_B_P22_1510\n2024_B_P22_1607\n2024_B_P22_1811\n2024_B_P23_1713\n2024_B_P28_0405\n2024_B_P29_0018\n2024_B_P29_0712\n2024_B_P29_1012\n2024_B_Q17_0303\n2024_B_Q17_1213\n2024_B_Q18_0515\n2024_B_Q18_1009\n2024_B_Q18_1515\n2024_B_Q23_0700\n2024_B_Q23_0804\n2024_B_Q26_0813\n2024_B_Q26_1005\n2024_B_Q26_1213\n2024_B_Q27_0410\n2024_B_Q27_1409\n2024_B_Q29_1316\n2024_B_Q29_1702\n2024_B_Q3_0117\n2024_B_Q3_0608\n2024_B_Q3_1408\n2024_B_R17_0511\n2024_B_R17_0604\n2024_B_R17_1202\n2024_B_R2_0413\n2024_B_R2_0502\n2024_B_R2_0713\n2024_B_R28_0116\n2024_B_R28_0318\n2024_B_R28_1010\n2024_B_R29_0713\n2024_B_R29_1009\n2024_B_R3_1113\n2024_B_R3_1414\n2024_B_S12_0310\n2024_B_S12_0708\n2024_B_S12_1209\n2024_B_S12_1213\n2024_B_S12_1504\n2024_B_S13_1419\n2024_B_S22_0509\n2024_B_S22_1404\n2024_B_S28_0211\n2024_B_S28_0600\n2024_B_S28_0707\n2024_B_T13_1117\n2024_B_T13_1612\n2024_B_T22_0602\n2024_B_T22_0704\n2024_B_T22_1005\n2024_B_T22_1708\n2024_B_T22_1714\n2024_B_T22_1915\n2024_B_T29_0912\n2024_B_T29_1216\n2024_B_U19_1003\n2024_B_U19_1111\n2024_B_U19_1116\n2024_B_U24_0406\n2024_B_U24_1117\n2024_B_U24_1403\n2024_B_U28_0210\n2024_B_U28_0404\n2024_B_U29_0319\n2024_B_U29_0804\n2024_B_U29_1216\n2024_B_V18_0216\n2024_B_V18_0704\n2024_B_V18_0714\n2024_B_V19_0217\n2024_B_V19_0503\n2024_B_V22_0317\n2024_B_V22_0510\n2024_B_V22_0517\n2024_B_V22_0901\n2024_B_V22_1008\n2024_B_V22_1803\n2024_B_V23_0416\n2024_B_V23_0809\n2024_B_V24_1105\n2024_B_V24_1312"
+  },
+  {
+    "objectID": "figures.html#2023-a-c32-0110",
+    "href": "figures.html#2023-a-c32-0110",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_C32_0110",
+    "text": "2023_A_C32_0110"
+  },
+  {
+    "objectID": "figures.html#2023-a-c32-1612",
+    "href": "figures.html#2023-a-c32-1612",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_C32_1612",
+    "text": "2023_A_C32_1612"
+  },
+  {
+    "objectID": "figures.html#2023-a-c33-0609",
+    "href": "figures.html#2023-a-c33-0609",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_C33_0609",
+    "text": "2023_A_C33_0609"
+  },
+  {
+    "objectID": "figures.html#2023-a-c33-0918",
+    "href": "figures.html#2023-a-c33-0918",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_C33_0918",
+    "text": "2023_A_C33_0918"
+  },
+  {
+    "objectID": "figures.html#2023-a-d32-1401",
+    "href": "figures.html#2023-a-d32-1401",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_D32_1401",
+    "text": "2023_A_D32_1401"
+  },
+  {
+    "objectID": "figures.html#2023-a-d33-0407",
+    "href": "figures.html#2023-a-d33-0407",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_D33_0407",
+    "text": "2023_A_D33_0407"
+  },
+  {
+    "objectID": "figures.html#2023-a-d33-0610",
+    "href": "figures.html#2023-a-d33-0610",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_D33_0610",
+    "text": "2023_A_D33_0610"
+  },
+  {
+    "objectID": "figures.html#2023-a-d33-0703",
+    "href": "figures.html#2023-a-d33-0703",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_D33_0703",
+    "text": "2023_A_D33_0703"
+  },
+  {
+    "objectID": "figures.html#2023-a-e34-0216",
+    "href": "figures.html#2023-a-e34-0216",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_E34_0216",
+    "text": "2023_A_E34_0216"
+  },
+  {
+    "objectID": "figures.html#2023-a-e34-0604",
+    "href": "figures.html#2023-a-e34-0604",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_E34_0604",
+    "text": "2023_A_E34_0604"
+  },
+  {
+    "objectID": "figures.html#2023-a-f21-0317",
+    "href": "figures.html#2023-a-f21-0317",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_F21_0317",
+    "text": "2023_A_F21_0317"
+  },
+  {
+    "objectID": "figures.html#2023-a-f21-1014",
+    "href": "figures.html#2023-a-f21-1014",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_F21_1014",
+    "text": "2023_A_F21_1014"
+  },
+  {
+    "objectID": "figures.html#2023-a-f27-0517",
+    "href": "figures.html#2023-a-f27-0517",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_F27_0517",
+    "text": "2023_A_F27_0517"
+  },
+  {
+    "objectID": "figures.html#2023-a-f27-1201",
+    "href": "figures.html#2023-a-f27-1201",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_F27_1201",
+    "text": "2023_A_F27_1201"
+  },
+  {
+    "objectID": "figures.html#2023-a-f35-0306",
+    "href": "figures.html#2023-a-f35-0306",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_F35_0306",
+    "text": "2023_A_F35_0306"
+  },
+  {
+    "objectID": "figures.html#2023-a-f35-1113",
+    "href": "figures.html#2023-a-f35-1113",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_F35_1113",
+    "text": "2023_A_F35_1113"
+  },
+  {
+    "objectID": "figures.html#2023-a-f35-1814",
+    "href": "figures.html#2023-a-f35-1814",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_F35_1814",
+    "text": "2023_A_F35_1814"
+  },
+  {
+    "objectID": "figures.html#2023-a-g21-0406",
+    "href": "figures.html#2023-a-g21-0406",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_G21_0406",
+    "text": "2023_A_G21_0406"
+  },
+  {
+    "objectID": "figures.html#2023-a-g21-0410",
+    "href": "figures.html#2023-a-g21-0410",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_G21_0410",
+    "text": "2023_A_G21_0410"
+  },
+  {
+    "objectID": "figures.html#2023-a-g21-0812",
+    "href": "figures.html#2023-a-g21-0812",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_G21_0812",
+    "text": "2023_A_G21_0812"
+  },
+  {
+    "objectID": "figures.html#2023-a-g21-1008",
+    "href": "figures.html#2023-a-g21-1008",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_G21_1008",
+    "text": "2023_A_G21_1008"
+  },
+  {
+    "objectID": "figures.html#2023-a-g21-1809",
+    "href": "figures.html#2023-a-g21-1809",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_G21_1809",
+    "text": "2023_A_G21_1809"
+  },
+  {
+    "objectID": "figures.html#2023-a-g21-1816",
+    "href": "figures.html#2023-a-g21-1816",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_G21_1816",
+    "text": "2023_A_G21_1816"
+  },
+  {
+    "objectID": "figures.html#2023-a-g26-0116",
+    "href": "figures.html#2023-a-g26-0116",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_G26_0116",
+    "text": "2023_A_G26_0116"
+  },
+  {
+    "objectID": "figures.html#2023-a-g26-0214",
+    "href": "figures.html#2023-a-g26-0214",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_G26_0214",
+    "text": "2023_A_G26_0214"
+  },
+  {
+    "objectID": "figures.html#2023-a-g26-0512",
+    "href": "figures.html#2023-a-g26-0512",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_G26_0512",
+    "text": "2023_A_G26_0512"
+  },
+  {
+    "objectID": "figures.html#2023-a-g26-0606",
+    "href": "figures.html#2023-a-g26-0606",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_G26_0606",
+    "text": "2023_A_G26_0606"
+  },
+  {
+    "objectID": "figures.html#2023-a-g26-0912",
+    "href": "figures.html#2023-a-g26-0912",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_G26_0912",
+    "text": "2023_A_G26_0912"
+  },
+  {
+    "objectID": "figures.html#2023-a-g26-1103",
+    "href": "figures.html#2023-a-g26-1103",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_G26_1103",
+    "text": "2023_A_G26_1103"
+  },
+  {
+    "objectID": "figures.html#2023-a-g31-1908",
+    "href": "figures.html#2023-a-g31-1908",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_G31_1908",
+    "text": "2023_A_G31_1908"
+  },
+  {
+    "objectID": "figures.html#2023-a-h27-0005",
+    "href": "figures.html#2023-a-h27-0005",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_H27_0005",
+    "text": "2023_A_H27_0005"
+  },
+  {
+    "objectID": "figures.html#2023-a-h27-0307",
+    "href": "figures.html#2023-a-h27-0307",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_H27_0307",
+    "text": "2023_A_H27_0307"
+  },
+  {
+    "objectID": "figures.html#2023-a-h27-0318",
+    "href": "figures.html#2023-a-h27-0318",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_H27_0318",
+    "text": "2023_A_H27_0318"
+  },
+  {
+    "objectID": "figures.html#2023-a-h27-1710",
+    "href": "figures.html#2023-a-h27-1710",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_H27_1710",
+    "text": "2023_A_H27_1710"
+  },
+  {
+    "objectID": "figures.html#2023-a-h29-1604",
+    "href": "figures.html#2023-a-h29-1604",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_H29_1604",
+    "text": "2023_A_H29_1604"
+  },
+  {
+    "objectID": "figures.html#2023-a-h29-1606",
+    "href": "figures.html#2023-a-h29-1606",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_H29_1606",
+    "text": "2023_A_H29_1606"
+  },
+  {
+    "objectID": "figures.html#2023-a-h30-0315",
+    "href": "figures.html#2023-a-h30-0315",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_H30_0315",
+    "text": "2023_A_H30_0315"
+  },
+  {
+    "objectID": "figures.html#2023-a-h30-0606",
+    "href": "figures.html#2023-a-h30-0606",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_H30_0606",
+    "text": "2023_A_H30_0606"
+  },
+  {
+    "objectID": "figures.html#2023-a-h30-0611",
+    "href": "figures.html#2023-a-h30-0611",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_H30_0611",
+    "text": "2023_A_H30_0611"
+  },
+  {
+    "objectID": "figures.html#2023-a-h30-0709",
+    "href": "figures.html#2023-a-h30-0709",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_H30_0709",
+    "text": "2023_A_H30_0709"
+  },
+  {
+    "objectID": "figures.html#2023-a-h30-1010",
+    "href": "figures.html#2023-a-h30-1010",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_H30_1010",
+    "text": "2023_A_H30_1010"
+  },
+  {
+    "objectID": "figures.html#2023-a-h31-0403",
+    "href": "figures.html#2023-a-h31-0403",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_H31_0403",
+    "text": "2023_A_H31_0403"
+  },
+  {
+    "objectID": "figures.html#2023-a-h31-0901",
+    "href": "figures.html#2023-a-h31-0901",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_H31_0901",
+    "text": "2023_A_H31_0901"
+  },
+  {
+    "objectID": "figures.html#2023-a-i26-0010",
+    "href": "figures.html#2023-a-i26-0010",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_I26_0010",
+    "text": "2023_A_I26_0010"
+  },
+  {
+    "objectID": "figures.html#2023-a-i26-1711",
+    "href": "figures.html#2023-a-i26-1711",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_I26_1711",
+    "text": "2023_A_I26_1711"
+  },
+  {
+    "objectID": "figures.html#2023-a-i27-0007",
+    "href": "figures.html#2023-a-i27-0007",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_I27_0007",
+    "text": "2023_A_I27_0007"
+  },
+  {
+    "objectID": "figures.html#2023-a-i27-0803",
+    "href": "figures.html#2023-a-i27-0803",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_I27_0803",
+    "text": "2023_A_I27_0803"
+  },
+  {
+    "objectID": "figures.html#2023-a-i28-0412",
+    "href": "figures.html#2023-a-i28-0412",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_I28_0412",
+    "text": "2023_A_I28_0412"
+  },
+  {
+    "objectID": "figures.html#2023-a-i29-0208",
+    "href": "figures.html#2023-a-i29-0208",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_I29_0208",
+    "text": "2023_A_I29_0208"
+  },
+  {
+    "objectID": "figures.html#2023-a-i29-0504",
+    "href": "figures.html#2023-a-i29-0504",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_I29_0504",
+    "text": "2023_A_I29_0504"
+  },
+  {
+    "objectID": "figures.html#2023-a-i29-0610",
+    "href": "figures.html#2023-a-i29-0610",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_I29_0610",
+    "text": "2023_A_I29_0610"
+  },
+  {
+    "objectID": "figures.html#2023-a-i29-0717",
+    "href": "figures.html#2023-a-i29-0717",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_I29_0717",
+    "text": "2023_A_I29_0717"
+  },
+  {
+    "objectID": "figures.html#2023-a-i29-1218",
+    "href": "figures.html#2023-a-i29-1218",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_I29_1218",
+    "text": "2023_A_I29_1218"
+  },
+  {
+    "objectID": "figures.html#2023-a-i29-1303",
+    "href": "figures.html#2023-a-i29-1303",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_I29_1303",
+    "text": "2023_A_I29_1303"
+  },
+  {
+    "objectID": "figures.html#2023-a-l11-0812",
+    "href": "figures.html#2023-a-l11-0812",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_L11_0812",
+    "text": "2023_A_L11_0812"
+  },
+  {
+    "objectID": "figures.html#2023-a-l11-1812",
+    "href": "figures.html#2023-a-l11-1812",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_L11_1812",
+    "text": "2023_A_L11_1812"
+  },
+  {
+    "objectID": "figures.html#2023-a-l19-1706",
+    "href": "figures.html#2023-a-l19-1706",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_L19_1706",
+    "text": "2023_A_L19_1706"
+  },
+  {
+    "objectID": "figures.html#2023-a-l21-0600",
+    "href": "figures.html#2023-a-l21-0600",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_L21_0600",
+    "text": "2023_A_L21_0600"
+  },
+  {
+    "objectID": "figures.html#2023-a-l21-0816",
+    "href": "figures.html#2023-a-l21-0816",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_L21_0816",
+    "text": "2023_A_L21_0816"
+  },
+  {
+    "objectID": "figures.html#2023-a-l21-1601",
+    "href": "figures.html#2023-a-l21-1601",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_L21_1601",
+    "text": "2023_A_L21_1601"
+  },
+  {
+    "objectID": "figures.html#2023-a-l22-0115",
+    "href": "figures.html#2023-a-l22-0115",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_L22_0115",
+    "text": "2023_A_L22_0115"
+  },
+  {
+    "objectID": "figures.html#2023-a-l22-0614",
+    "href": "figures.html#2023-a-l22-0614",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_L22_0614",
+    "text": "2023_A_L22_0614"
+  },
+  {
+    "objectID": "figures.html#2023-a-m11-0218",
+    "href": "figures.html#2023-a-m11-0218",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_M11_0218",
+    "text": "2023_A_M11_0218"
+  },
+  {
+    "objectID": "figures.html#2023-a-m11-0514",
+    "href": "figures.html#2023-a-m11-0514",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_M11_0514",
+    "text": "2023_A_M11_0514"
+  },
+  {
+    "objectID": "figures.html#2023-a-m11-1108",
+    "href": "figures.html#2023-a-m11-1108",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_M11_1108",
+    "text": "2023_A_M11_1108"
+  },
+  {
+    "objectID": "figures.html#2023-a-m11-1613",
+    "href": "figures.html#2023-a-m11-1613",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_M11_1613",
+    "text": "2023_A_M11_1613"
+  },
+  {
+    "objectID": "figures.html#2023-a-m11-1616",
+    "href": "figures.html#2023-a-m11-1616",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_M11_1616",
+    "text": "2023_A_M11_1616"
+  },
+  {
+    "objectID": "figures.html#2023-a-m11-1802",
+    "href": "figures.html#2023-a-m11-1802",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_M11_1802",
+    "text": "2023_A_M11_1802"
+  },
+  {
+    "objectID": "figures.html#2023-a-m13-0909",
+    "href": "figures.html#2023-a-m13-0909",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_M13_0909",
+    "text": "2023_A_M13_0909"
+  },
+  {
+    "objectID": "figures.html#2023-a-m13-1309",
+    "href": "figures.html#2023-a-m13-1309",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_M13_1309",
+    "text": "2023_A_M13_1309"
+  },
+  {
+    "objectID": "figures.html#2023-a-m13-1816",
+    "href": "figures.html#2023-a-m13-1816",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_M13_1816",
+    "text": "2023_A_M13_1816"
+  },
+  {
+    "objectID": "figures.html#2023-a-m19-0003",
+    "href": "figures.html#2023-a-m19-0003",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_M19_0003",
+    "text": "2023_A_M19_0003"
+  },
+  {
+    "objectID": "figures.html#2023-a-m19-0102",
+    "href": "figures.html#2023-a-m19-0102",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_M19_0102",
+    "text": "2023_A_M19_0102"
+  },
+  {
+    "objectID": "figures.html#2023-a-m19-0605",
+    "href": "figures.html#2023-a-m19-0605",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_M19_0605",
+    "text": "2023_A_M19_0605"
+  },
+  {
+    "objectID": "figures.html#2023-a-m19-0709",
+    "href": "figures.html#2023-a-m19-0709",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_M19_0709",
+    "text": "2023_A_M19_0709"
+  },
+  {
+    "objectID": "figures.html#2023-a-m19-1003",
+    "href": "figures.html#2023-a-m19-1003",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_M19_1003",
+    "text": "2023_A_M19_1003"
+  },
+  {
+    "objectID": "figures.html#2023-a-m22-0201",
+    "href": "figures.html#2023-a-m22-0201",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_M22_0201",
+    "text": "2023_A_M22_0201"
+  },
+  {
+    "objectID": "figures.html#2023-a-m22-0213",
+    "href": "figures.html#2023-a-m22-0213",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_M22_0213",
+    "text": "2023_A_M22_0213"
+  },
+  {
+    "objectID": "figures.html#2023-a-m22-1313",
+    "href": "figures.html#2023-a-m22-1313",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_M22_1313",
+    "text": "2023_A_M22_1313"
+  },
+  {
+    "objectID": "figures.html#2023-a-n11-0306",
+    "href": "figures.html#2023-a-n11-0306",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_N11_0306",
+    "text": "2023_A_N11_0306"
+  },
+  {
+    "objectID": "figures.html#2023-a-n11-1510",
+    "href": "figures.html#2023-a-n11-1510",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_N11_1510",
+    "text": "2023_A_N11_1510"
+  },
+  {
+    "objectID": "figures.html#2023-a-n13-0505",
+    "href": "figures.html#2023-a-n13-0505",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_N13_0505",
+    "text": "2023_A_N13_0505"
+  },
+  {
+    "objectID": "figures.html#2023-a-n13-0808",
+    "href": "figures.html#2023-a-n13-0808",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_N13_0808",
+    "text": "2023_A_N13_0808"
+  },
+  {
+    "objectID": "figures.html#2023-a-n14-0415",
+    "href": "figures.html#2023-a-n14-0415",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_N14_0415",
+    "text": "2023_A_N14_0415"
+  },
+  {
+    "objectID": "figures.html#2023-a-n14-1019",
+    "href": "figures.html#2023-a-n14-1019",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_N14_1019",
+    "text": "2023_A_N14_1019"
+  },
+  {
+    "objectID": "figures.html#2023-a-n14-1311",
+    "href": "figures.html#2023-a-n14-1311",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_N14_1311",
+    "text": "2023_A_N14_1311"
+  },
+  {
+    "objectID": "figures.html#2023-a-n27-0104",
+    "href": "figures.html#2023-a-n27-0104",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_N27_0104",
+    "text": "2023_A_N27_0104"
+  },
+  {
+    "objectID": "figures.html#2023-a-n27-0306",
+    "href": "figures.html#2023-a-n27-0306",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_N27_0306",
+    "text": "2023_A_N27_0306"
+  },
+  {
+    "objectID": "figures.html#2023-a-n27-0804",
+    "href": "figures.html#2023-a-n27-0804",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_N27_0804",
+    "text": "2023_A_N27_0804"
+  },
+  {
+    "objectID": "figures.html#2023-a-n27-1107",
+    "href": "figures.html#2023-a-n27-1107",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_N27_1107",
+    "text": "2023_A_N27_1107"
+  },
+  {
+    "objectID": "figures.html#2023-a-n27-1512",
+    "href": "figures.html#2023-a-n27-1512",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_N27_1512",
+    "text": "2023_A_N27_1512"
+  },
+  {
+    "objectID": "figures.html#2023-a-o11-0303",
+    "href": "figures.html#2023-a-o11-0303",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_O11_0303",
+    "text": "2023_A_O11_0303"
+  },
+  {
+    "objectID": "figures.html#2023-a-o12-0016",
+    "href": "figures.html#2023-a-o12-0016",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_O12_0016",
+    "text": "2023_A_O12_0016"
+  },
+  {
+    "objectID": "figures.html#2023-a-o12-0712",
+    "href": "figures.html#2023-a-o12-0712",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_O12_0712",
+    "text": "2023_A_O12_0712"
+  },
+  {
+    "objectID": "figures.html#2023-a-o12-0817",
+    "href": "figures.html#2023-a-o12-0817",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_O12_0817",
+    "text": "2023_A_O12_0817"
+  },
+  {
+    "objectID": "figures.html#2023-a-o12-1012",
+    "href": "figures.html#2023-a-o12-1012",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_O12_1012",
+    "text": "2023_A_O12_1012"
+  },
+  {
+    "objectID": "figures.html#2023-a-o12-1205",
+    "href": "figures.html#2023-a-o12-1205",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_O12_1205",
+    "text": "2023_A_O12_1205"
+  },
+  {
+    "objectID": "figures.html#2023-a-o25-1006",
+    "href": "figures.html#2023-a-o25-1006",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_O25_1006",
+    "text": "2023_A_O25_1006"
+  },
+  {
+    "objectID": "figures.html#2023-a-o26-0406",
+    "href": "figures.html#2023-a-o26-0406",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_O26_0406",
+    "text": "2023_A_O26_0406"
+  },
+  {
+    "objectID": "figures.html#2023-a-o26-1203",
+    "href": "figures.html#2023-a-o26-1203",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_O26_1203",
+    "text": "2023_A_O26_1203"
+  },
+  {
+    "objectID": "figures.html#2023-a-o26-1214",
+    "href": "figures.html#2023-a-o26-1214",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_O26_1214",
+    "text": "2023_A_O26_1214"
+  },
+  {
+    "objectID": "figures.html#2023-a-o26-1301",
+    "href": "figures.html#2023-a-o26-1301",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_O26_1301",
+    "text": "2023_A_O26_1301"
+  },
+  {
+    "objectID": "figures.html#2023-a-o26-1706",
+    "href": "figures.html#2023-a-o26-1706",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_O26_1706",
+    "text": "2023_A_O26_1706"
+  },
+  {
+    "objectID": "figures.html#2023-a-o27-1218",
+    "href": "figures.html#2023-a-o27-1218",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_O27_1218",
+    "text": "2023_A_O27_1218"
+  },
+  {
+    "objectID": "figures.html#2023-a-o27-1507",
+    "href": "figures.html#2023-a-o27-1507",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_O27_1507",
+    "text": "2023_A_O27_1507"
+  },
+  {
+    "objectID": "figures.html#2023-a-o28-1715",
+    "href": "figures.html#2023-a-o28-1715",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_O28_1715",
+    "text": "2023_A_O28_1715"
+  },
+  {
+    "objectID": "figures.html#2023-a-p19-0113",
+    "href": "figures.html#2023-a-p19-0113",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_P19_0113",
+    "text": "2023_A_P19_0113"
+  },
+  {
+    "objectID": "figures.html#2023-a-p19-0410",
+    "href": "figures.html#2023-a-p19-0410",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_P19_0410",
+    "text": "2023_A_P19_0410"
+  },
+  {
+    "objectID": "figures.html#2023-a-p26-0614",
+    "href": "figures.html#2023-a-p26-0614",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_P26_0614",
+    "text": "2023_A_P26_0614"
+  },
+  {
+    "objectID": "figures.html#2023-a-p26-0818",
+    "href": "figures.html#2023-a-p26-0818",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_P26_0818",
+    "text": "2023_A_P26_0818"
+  },
+  {
+    "objectID": "figures.html#2023-a-q20-0205",
+    "href": "figures.html#2023-a-q20-0205",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_Q20_0205",
+    "text": "2023_A_Q20_0205"
+  },
+  {
+    "objectID": "figures.html#2023-a-q20-0317",
+    "href": "figures.html#2023-a-q20-0317",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_Q20_0317",
+    "text": "2023_A_Q20_0317"
+  },
+  {
+    "objectID": "figures.html#2023-a-q20-0403",
+    "href": "figures.html#2023-a-q20-0403",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_Q20_0403",
+    "text": "2023_A_Q20_0403"
+  },
+  {
+    "objectID": "figures.html#2023-a-q20-0415",
+    "href": "figures.html#2023-a-q20-0415",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_Q20_0415",
+    "text": "2023_A_Q20_0415"
+  },
+  {
+    "objectID": "figures.html#2023-a-q20-0419",
+    "href": "figures.html#2023-a-q20-0419",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_Q20_0419",
+    "text": "2023_A_Q20_0419"
+  },
+  {
+    "objectID": "figures.html#2023-a-q20-0705",
+    "href": "figures.html#2023-a-q20-0705",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_Q20_0705",
+    "text": "2023_A_Q20_0705"
+  },
+  {
+    "objectID": "figures.html#2023-a-s10-0004",
+    "href": "figures.html#2023-a-s10-0004",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_S10_0004",
+    "text": "2023_A_S10_0004"
+  },
+  {
+    "objectID": "figures.html#2023-a-s10-0716",
+    "href": "figures.html#2023-a-s10-0716",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_S10_0716",
+    "text": "2023_A_S10_0716"
+  },
+  {
+    "objectID": "figures.html#2023-a-s9-0404",
+    "href": "figures.html#2023-a-s9-0404",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_S9_0404",
+    "text": "2023_A_S9_0404"
+  },
+  {
+    "objectID": "figures.html#2023-a-s9-1108",
+    "href": "figures.html#2023-a-s9-1108",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_S9_1108",
+    "text": "2023_A_S9_1108"
+  },
+  {
+    "objectID": "figures.html#2023-a-t10-0617",
+    "href": "figures.html#2023-a-t10-0617",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_T10_0617",
+    "text": "2023_A_T10_0617"
+  },
+  {
+    "objectID": "figures.html#2023-a-w14-0614",
+    "href": "figures.html#2023-a-w14-0614",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_W14_0614",
+    "text": "2023_A_W14_0614"
+  },
+  {
+    "objectID": "figures.html#2023-a-w14-1511",
+    "href": "figures.html#2023-a-w14-1511",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_W14_1511",
+    "text": "2023_A_W14_1511"
+  },
+  {
+    "objectID": "figures.html#2023-a-x14-0102",
+    "href": "figures.html#2023-a-x14-0102",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_X14_0102",
+    "text": "2023_A_X14_0102"
+  },
+  {
+    "objectID": "figures.html#2023-a-x14-0409",
+    "href": "figures.html#2023-a-x14-0409",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_X14_0409",
+    "text": "2023_A_X14_0409"
+  },
+  {
+    "objectID": "figures.html#2023-a-x14-0808",
+    "href": "figures.html#2023-a-x14-0808",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_X14_0808",
+    "text": "2023_A_X14_0808"
+  },
+  {
+    "objectID": "figures.html#2023-a-x14-1408",
+    "href": "figures.html#2023-a-x14-1408",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_X14_1408",
+    "text": "2023_A_X14_1408"
+  },
+  {
+    "objectID": "figures.html#2023-a-x14-1503",
+    "href": "figures.html#2023-a-x14-1503",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_X14_1503",
+    "text": "2023_A_X14_1503"
+  },
+  {
+    "objectID": "figures.html#2023-a-x14-1511",
+    "href": "figures.html#2023-a-x14-1511",
+    "title": "TSQ Structural Figures",
+    "section": "2023_A_X14_1511",
+    "text": "2023_A_X14_1511"
+  },
+  {
+    "objectID": "figures.html#2024-b-e26-1805",
+    "href": "figures.html#2024-b-e26-1805",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_E26_1805",
+    "text": "2024_B_E26_1805"
+  },
+  {
+    "objectID": "figures.html#2024-b-f27-0310",
+    "href": "figures.html#2024-b-f27-0310",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_F27_0310",
+    "text": "2024_B_F27_0310"
+  },
+  {
+    "objectID": "figures.html#2024-b-f27-0403",
+    "href": "figures.html#2024-b-f27-0403",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_F27_0403",
+    "text": "2024_B_F27_0403"
+  },
+  {
+    "objectID": "figures.html#2024-b-f27-0519",
+    "href": "figures.html#2024-b-f27-0519",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_F27_0519",
+    "text": "2024_B_F27_0519"
+  },
+  {
+    "objectID": "figures.html#2024-b-f27-0609",
+    "href": "figures.html#2024-b-f27-0609",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_F27_0609",
+    "text": "2024_B_F27_0609"
+  },
+  {
+    "objectID": "figures.html#2024-b-f27-0818",
+    "href": "figures.html#2024-b-f27-0818",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_F27_0818",
+    "text": "2024_B_F27_0818"
+  },
+  {
+    "objectID": "figures.html#2024-b-f28-0600",
+    "href": "figures.html#2024-b-f28-0600",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_F28_0600",
+    "text": "2024_B_F28_0600"
+  },
+  {
+    "objectID": "figures.html#2024-b-f28-1412",
+    "href": "figures.html#2024-b-f28-1412",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_F28_1412",
+    "text": "2024_B_F28_1412"
+  },
+  {
+    "objectID": "figures.html#2024-b-f28-1510",
+    "href": "figures.html#2024-b-f28-1510",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_F28_1510",
+    "text": "2024_B_F28_1510"
+  },
+  {
+    "objectID": "figures.html#2024-b-f29-0307",
+    "href": "figures.html#2024-b-f29-0307",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_F29_0307",
+    "text": "2024_B_F29_0307"
+  },
+  {
+    "objectID": "figures.html#2024-b-g28-0206",
+    "href": "figures.html#2024-b-g28-0206",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_G28_0206",
+    "text": "2024_B_G28_0206"
+  },
+  {
+    "objectID": "figures.html#2024-b-g28-0513",
+    "href": "figures.html#2024-b-g28-0513",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_G28_0513",
+    "text": "2024_B_G28_0513"
+  },
+  {
+    "objectID": "figures.html#2024-b-g29-0710",
+    "href": "figures.html#2024-b-g29-0710",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_G29_0710",
+    "text": "2024_B_G29_0710"
+  },
+  {
+    "objectID": "figures.html#2024-b-g29-0807",
+    "href": "figures.html#2024-b-g29-0807",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_G29_0807",
+    "text": "2024_B_G29_0807"
+  },
+  {
+    "objectID": "figures.html#2024-b-i25-0401",
+    "href": "figures.html#2024-b-i25-0401",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_I25_0401",
+    "text": "2024_B_I25_0401"
+  },
+  {
+    "objectID": "figures.html#2024-b-i25-0607",
+    "href": "figures.html#2024-b-i25-0607",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_I25_0607",
+    "text": "2024_B_I25_0607"
+  },
+  {
+    "objectID": "figures.html#2024-b-j25-0009",
+    "href": "figures.html#2024-b-j25-0009",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_J25_0009",
+    "text": "2024_B_J25_0009"
+  },
+  {
+    "objectID": "figures.html#2024-b-j25-0508",
+    "href": "figures.html#2024-b-j25-0508",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_J25_0508",
+    "text": "2024_B_J25_0508"
+  },
+  {
+    "objectID": "figures.html#2024-b-j25-0818",
+    "href": "figures.html#2024-b-j25-0818",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_J25_0818",
+    "text": "2024_B_J25_0818"
+  },
+  {
+    "objectID": "figures.html#2024-b-j25-1004",
+    "href": "figures.html#2024-b-j25-1004",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_J25_1004",
+    "text": "2024_B_J25_1004"
+  },
+  {
+    "objectID": "figures.html#2024-b-j25-1211",
+    "href": "figures.html#2024-b-j25-1211",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_J25_1211",
+    "text": "2024_B_J25_1211"
+  },
+  {
+    "objectID": "figures.html#2024-b-j25-1300",
+    "href": "figures.html#2024-b-j25-1300",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_J25_1300",
+    "text": "2024_B_J25_1300"
+  },
+  {
+    "objectID": "figures.html#2024-b-l21-0103",
+    "href": "figures.html#2024-b-l21-0103",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_L21_0103",
+    "text": "2024_B_L21_0103"
+  },
+  {
+    "objectID": "figures.html#2024-b-l21-0211",
+    "href": "figures.html#2024-b-l21-0211",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_L21_0211",
+    "text": "2024_B_L21_0211"
+  },
+  {
+    "objectID": "figures.html#2024-b-l21-0403",
+    "href": "figures.html#2024-b-l21-0403",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_L21_0403",
+    "text": "2024_B_L21_0403"
+  },
+  {
+    "objectID": "figures.html#2024-b-l21-0505",
+    "href": "figures.html#2024-b-l21-0505",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_L21_0505",
+    "text": "2024_B_L21_0505"
+  },
+  {
+    "objectID": "figures.html#2024-b-l21-1010",
+    "href": "figures.html#2024-b-l21-1010",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_L21_1010",
+    "text": "2024_B_L21_1010"
+  },
+  {
+    "objectID": "figures.html#2024-b-l21-1406",
+    "href": "figures.html#2024-b-l21-1406",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_L21_1406",
+    "text": "2024_B_L21_1406"
+  },
+  {
+    "objectID": "figures.html#2024-b-m22-0203",
+    "href": "figures.html#2024-b-m22-0203",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_M22_0203",
+    "text": "2024_B_M22_0203"
+  },
+  {
+    "objectID": "figures.html#2024-b-m22-1001",
+    "href": "figures.html#2024-b-m22-1001",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_M22_1001",
+    "text": "2024_B_M22_1001"
+  },
+  {
+    "objectID": "figures.html#2024-b-m7-1601",
+    "href": "figures.html#2024-b-m7-1601",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_M7_1601",
+    "text": "2024_B_M7_1601"
+  },
+  {
+    "objectID": "figures.html#2024-b-m7-1800",
+    "href": "figures.html#2024-b-m7-1800",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_M7_1800",
+    "text": "2024_B_M7_1800"
+  },
+  {
+    "objectID": "figures.html#2024-b-m8-1717",
+    "href": "figures.html#2024-b-m8-1717",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_M8_1717",
+    "text": "2024_B_M8_1717"
+  },
+  {
+    "objectID": "figures.html#2024-b-m8-1809",
+    "href": "figures.html#2024-b-m8-1809",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_M8_1809",
+    "text": "2024_B_M8_1809"
+  },
+  {
+    "objectID": "figures.html#2024-b-n8-0212",
+    "href": "figures.html#2024-b-n8-0212",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_N8_0212",
+    "text": "2024_B_N8_0212"
+  },
+  {
+    "objectID": "figures.html#2024-b-n8-0615",
+    "href": "figures.html#2024-b-n8-0615",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_N8_0615",
+    "text": "2024_B_N8_0615"
+  },
+  {
+    "objectID": "figures.html#2024-b-n8-0904",
+    "href": "figures.html#2024-b-n8-0904",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_N8_0904",
+    "text": "2024_B_N8_0904"
+  },
+  {
+    "objectID": "figures.html#2024-b-n8-1202",
+    "href": "figures.html#2024-b-n8-1202",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_N8_1202",
+    "text": "2024_B_N8_1202"
+  },
+  {
+    "objectID": "figures.html#2024-b-o26-0208",
+    "href": "figures.html#2024-b-o26-0208",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_O26_0208",
+    "text": "2024_B_O26_0208"
+  },
+  {
+    "objectID": "figures.html#2024-b-o26-1001",
+    "href": "figures.html#2024-b-o26-1001",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_O26_1001",
+    "text": "2024_B_O26_1001"
+  },
+  {
+    "objectID": "figures.html#2024-b-o26-1505",
+    "href": "figures.html#2024-b-o26-1505",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_O26_1505",
+    "text": "2024_B_O26_1505"
+  },
+  {
+    "objectID": "figures.html#2024-b-o26-1509",
+    "href": "figures.html#2024-b-o26-1509",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_O26_1509",
+    "text": "2024_B_O26_1509"
+  },
+  {
+    "objectID": "figures.html#2024-b-o26-1705",
+    "href": "figures.html#2024-b-o26-1705",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_O26_1705",
+    "text": "2024_B_O26_1705"
+  },
+  {
+    "objectID": "figures.html#2024-b-o26-1716",
+    "href": "figures.html#2024-b-o26-1716",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_O26_1716",
+    "text": "2024_B_O26_1716"
+  },
+  {
+    "objectID": "figures.html#2024-b-o27-0502",
+    "href": "figures.html#2024-b-o27-0502",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_O27_0502",
+    "text": "2024_B_O27_0502"
+  },
+  {
+    "objectID": "figures.html#2024-b-o27-1000",
+    "href": "figures.html#2024-b-o27-1000",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_O27_1000",
+    "text": "2024_B_O27_1000"
+  },
+  {
+    "objectID": "figures.html#2024-b-p22-1510",
+    "href": "figures.html#2024-b-p22-1510",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_P22_1510",
+    "text": "2024_B_P22_1510"
+  },
+  {
+    "objectID": "figures.html#2024-b-p22-1607",
+    "href": "figures.html#2024-b-p22-1607",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_P22_1607",
+    "text": "2024_B_P22_1607"
+  },
+  {
+    "objectID": "figures.html#2024-b-p22-1811",
+    "href": "figures.html#2024-b-p22-1811",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_P22_1811",
+    "text": "2024_B_P22_1811"
+  },
+  {
+    "objectID": "figures.html#2024-b-p23-1713",
+    "href": "figures.html#2024-b-p23-1713",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_P23_1713",
+    "text": "2024_B_P23_1713"
+  },
+  {
+    "objectID": "figures.html#2024-b-p28-0405",
+    "href": "figures.html#2024-b-p28-0405",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_P28_0405",
+    "text": "2024_B_P28_0405"
+  },
+  {
+    "objectID": "figures.html#2024-b-p29-0018",
+    "href": "figures.html#2024-b-p29-0018",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_P29_0018",
+    "text": "2024_B_P29_0018"
+  },
+  {
+    "objectID": "figures.html#2024-b-p29-0712",
+    "href": "figures.html#2024-b-p29-0712",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_P29_0712",
+    "text": "2024_B_P29_0712"
+  },
+  {
+    "objectID": "figures.html#2024-b-p29-1012",
+    "href": "figures.html#2024-b-p29-1012",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_P29_1012",
+    "text": "2024_B_P29_1012"
+  },
+  {
+    "objectID": "figures.html#2024-b-q17-0303",
+    "href": "figures.html#2024-b-q17-0303",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_Q17_0303",
+    "text": "2024_B_Q17_0303"
+  },
+  {
+    "objectID": "figures.html#2024-b-q17-1213",
+    "href": "figures.html#2024-b-q17-1213",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_Q17_1213",
+    "text": "2024_B_Q17_1213"
+  },
+  {
+    "objectID": "figures.html#2024-b-q18-0515",
+    "href": "figures.html#2024-b-q18-0515",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_Q18_0515",
+    "text": "2024_B_Q18_0515"
+  },
+  {
+    "objectID": "figures.html#2024-b-q18-1009",
+    "href": "figures.html#2024-b-q18-1009",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_Q18_1009",
+    "text": "2024_B_Q18_1009"
+  },
+  {
+    "objectID": "figures.html#2024-b-q18-1515",
+    "href": "figures.html#2024-b-q18-1515",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_Q18_1515",
+    "text": "2024_B_Q18_1515"
+  },
+  {
+    "objectID": "figures.html#2024-b-q23-0700",
+    "href": "figures.html#2024-b-q23-0700",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_Q23_0700",
+    "text": "2024_B_Q23_0700"
+  },
+  {
+    "objectID": "figures.html#2024-b-q23-0804",
+    "href": "figures.html#2024-b-q23-0804",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_Q23_0804",
+    "text": "2024_B_Q23_0804"
+  },
+  {
+    "objectID": "figures.html#2024-b-q26-0813",
+    "href": "figures.html#2024-b-q26-0813",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_Q26_0813",
+    "text": "2024_B_Q26_0813"
+  },
+  {
+    "objectID": "figures.html#2024-b-q26-1005",
+    "href": "figures.html#2024-b-q26-1005",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_Q26_1005",
+    "text": "2024_B_Q26_1005"
+  },
+  {
+    "objectID": "figures.html#2024-b-q26-1213",
+    "href": "figures.html#2024-b-q26-1213",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_Q26_1213",
+    "text": "2024_B_Q26_1213"
+  },
+  {
+    "objectID": "figures.html#2024-b-q27-0410",
+    "href": "figures.html#2024-b-q27-0410",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_Q27_0410",
+    "text": "2024_B_Q27_0410"
+  },
+  {
+    "objectID": "figures.html#2024-b-q27-1409",
+    "href": "figures.html#2024-b-q27-1409",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_Q27_1409",
+    "text": "2024_B_Q27_1409"
+  },
+  {
+    "objectID": "figures.html#2024-b-q29-1316",
+    "href": "figures.html#2024-b-q29-1316",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_Q29_1316",
+    "text": "2024_B_Q29_1316"
+  },
+  {
+    "objectID": "figures.html#2024-b-q29-1702",
+    "href": "figures.html#2024-b-q29-1702",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_Q29_1702",
+    "text": "2024_B_Q29_1702"
+  },
+  {
+    "objectID": "figures.html#2024-b-q3-0117",
+    "href": "figures.html#2024-b-q3-0117",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_Q3_0117",
+    "text": "2024_B_Q3_0117"
+  },
+  {
+    "objectID": "figures.html#2024-b-q3-0608",
+    "href": "figures.html#2024-b-q3-0608",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_Q3_0608",
+    "text": "2024_B_Q3_0608"
+  },
+  {
+    "objectID": "figures.html#2024-b-q3-1408",
+    "href": "figures.html#2024-b-q3-1408",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_Q3_1408",
+    "text": "2024_B_Q3_1408"
+  },
+  {
+    "objectID": "figures.html#2024-b-r17-0511",
+    "href": "figures.html#2024-b-r17-0511",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_R17_0511",
+    "text": "2024_B_R17_0511"
+  },
+  {
+    "objectID": "figures.html#2024-b-r17-0604",
+    "href": "figures.html#2024-b-r17-0604",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_R17_0604",
+    "text": "2024_B_R17_0604"
+  },
+  {
+    "objectID": "figures.html#2024-b-r17-1202",
+    "href": "figures.html#2024-b-r17-1202",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_R17_1202",
+    "text": "2024_B_R17_1202"
+  },
+  {
+    "objectID": "figures.html#2024-b-r2-0413",
+    "href": "figures.html#2024-b-r2-0413",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_R2_0413",
+    "text": "2024_B_R2_0413"
+  },
+  {
+    "objectID": "figures.html#2024-b-r2-0502",
+    "href": "figures.html#2024-b-r2-0502",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_R2_0502",
+    "text": "2024_B_R2_0502"
+  },
+  {
+    "objectID": "figures.html#2024-b-r2-0713",
+    "href": "figures.html#2024-b-r2-0713",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_R2_0713",
+    "text": "2024_B_R2_0713"
+  },
+  {
+    "objectID": "figures.html#2024-b-r28-0116",
+    "href": "figures.html#2024-b-r28-0116",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_R28_0116",
+    "text": "2024_B_R28_0116"
+  },
+  {
+    "objectID": "figures.html#2024-b-r28-0318",
+    "href": "figures.html#2024-b-r28-0318",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_R28_0318",
+    "text": "2024_B_R28_0318"
+  },
+  {
+    "objectID": "figures.html#2024-b-r28-1010",
+    "href": "figures.html#2024-b-r28-1010",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_R28_1010",
+    "text": "2024_B_R28_1010"
+  },
+  {
+    "objectID": "figures.html#2024-b-r29-0713",
+    "href": "figures.html#2024-b-r29-0713",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_R29_0713",
+    "text": "2024_B_R29_0713"
+  },
+  {
+    "objectID": "figures.html#2024-b-r29-1009",
+    "href": "figures.html#2024-b-r29-1009",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_R29_1009",
+    "text": "2024_B_R29_1009"
+  },
+  {
+    "objectID": "figures.html#2024-b-r3-1113",
+    "href": "figures.html#2024-b-r3-1113",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_R3_1113",
+    "text": "2024_B_R3_1113"
+  },
+  {
+    "objectID": "figures.html#2024-b-r3-1414",
+    "href": "figures.html#2024-b-r3-1414",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_R3_1414",
+    "text": "2024_B_R3_1414"
+  },
+  {
+    "objectID": "figures.html#2024-b-s12-0310",
+    "href": "figures.html#2024-b-s12-0310",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_S12_0310",
+    "text": "2024_B_S12_0310"
+  },
+  {
+    "objectID": "figures.html#2024-b-s12-0708",
+    "href": "figures.html#2024-b-s12-0708",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_S12_0708",
+    "text": "2024_B_S12_0708"
+  },
+  {
+    "objectID": "figures.html#2024-b-s12-1209",
+    "href": "figures.html#2024-b-s12-1209",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_S12_1209",
+    "text": "2024_B_S12_1209"
+  },
+  {
+    "objectID": "figures.html#2024-b-s12-1213",
+    "href": "figures.html#2024-b-s12-1213",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_S12_1213",
+    "text": "2024_B_S12_1213"
+  },
+  {
+    "objectID": "figures.html#2024-b-s12-1504",
+    "href": "figures.html#2024-b-s12-1504",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_S12_1504",
+    "text": "2024_B_S12_1504"
+  },
+  {
+    "objectID": "figures.html#2024-b-s13-1419",
+    "href": "figures.html#2024-b-s13-1419",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_S13_1419",
+    "text": "2024_B_S13_1419"
+  },
+  {
+    "objectID": "figures.html#2024-b-s22-0509",
+    "href": "figures.html#2024-b-s22-0509",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_S22_0509",
+    "text": "2024_B_S22_0509"
+  },
+  {
+    "objectID": "figures.html#2024-b-s22-1404",
+    "href": "figures.html#2024-b-s22-1404",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_S22_1404",
+    "text": "2024_B_S22_1404"
+  },
+  {
+    "objectID": "figures.html#2024-b-s28-0211",
+    "href": "figures.html#2024-b-s28-0211",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_S28_0211",
+    "text": "2024_B_S28_0211"
+  },
+  {
+    "objectID": "figures.html#2024-b-s28-0600",
+    "href": "figures.html#2024-b-s28-0600",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_S28_0600",
+    "text": "2024_B_S28_0600"
+  },
+  {
+    "objectID": "figures.html#2024-b-s28-0707",
+    "href": "figures.html#2024-b-s28-0707",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_S28_0707",
+    "text": "2024_B_S28_0707"
+  },
+  {
+    "objectID": "figures.html#2024-b-t13-1117",
+    "href": "figures.html#2024-b-t13-1117",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_T13_1117",
+    "text": "2024_B_T13_1117"
+  },
+  {
+    "objectID": "figures.html#2024-b-t13-1612",
+    "href": "figures.html#2024-b-t13-1612",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_T13_1612",
+    "text": "2024_B_T13_1612"
+  },
+  {
+    "objectID": "figures.html#2024-b-t22-0602",
+    "href": "figures.html#2024-b-t22-0602",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_T22_0602",
+    "text": "2024_B_T22_0602"
+  },
+  {
+    "objectID": "figures.html#2024-b-t22-0704",
+    "href": "figures.html#2024-b-t22-0704",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_T22_0704",
+    "text": "2024_B_T22_0704"
+  },
+  {
+    "objectID": "figures.html#2024-b-t22-1005",
+    "href": "figures.html#2024-b-t22-1005",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_T22_1005",
+    "text": "2024_B_T22_1005"
+  },
+  {
+    "objectID": "figures.html#2024-b-t22-1708",
+    "href": "figures.html#2024-b-t22-1708",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_T22_1708",
+    "text": "2024_B_T22_1708"
+  },
+  {
+    "objectID": "figures.html#2024-b-t22-1714",
+    "href": "figures.html#2024-b-t22-1714",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_T22_1714",
+    "text": "2024_B_T22_1714"
+  },
+  {
+    "objectID": "figures.html#2024-b-t22-1915",
+    "href": "figures.html#2024-b-t22-1915",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_T22_1915",
+    "text": "2024_B_T22_1915"
+  },
+  {
+    "objectID": "figures.html#2024-b-t29-0912",
+    "href": "figures.html#2024-b-t29-0912",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_T29_0912",
+    "text": "2024_B_T29_0912"
+  },
+  {
+    "objectID": "figures.html#2024-b-t29-1216",
+    "href": "figures.html#2024-b-t29-1216",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_T29_1216",
+    "text": "2024_B_T29_1216"
+  },
+  {
+    "objectID": "figures.html#2024-b-u19-1003",
+    "href": "figures.html#2024-b-u19-1003",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_U19_1003",
+    "text": "2024_B_U19_1003"
+  },
+  {
+    "objectID": "figures.html#2024-b-u19-1111",
+    "href": "figures.html#2024-b-u19-1111",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_U19_1111",
+    "text": "2024_B_U19_1111"
+  },
+  {
+    "objectID": "figures.html#2024-b-u19-1116",
+    "href": "figures.html#2024-b-u19-1116",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_U19_1116",
+    "text": "2024_B_U19_1116"
+  },
+  {
+    "objectID": "figures.html#2024-b-u24-0406",
+    "href": "figures.html#2024-b-u24-0406",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_U24_0406",
+    "text": "2024_B_U24_0406"
+  },
+  {
+    "objectID": "figures.html#2024-b-u24-1117",
+    "href": "figures.html#2024-b-u24-1117",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_U24_1117",
+    "text": "2024_B_U24_1117"
+  },
+  {
+    "objectID": "figures.html#2024-b-u24-1403",
+    "href": "figures.html#2024-b-u24-1403",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_U24_1403",
+    "text": "2024_B_U24_1403"
+  },
+  {
+    "objectID": "figures.html#2024-b-u28-0210",
+    "href": "figures.html#2024-b-u28-0210",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_U28_0210",
+    "text": "2024_B_U28_0210"
+  },
+  {
+    "objectID": "figures.html#2024-b-u28-0404",
+    "href": "figures.html#2024-b-u28-0404",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_U28_0404",
+    "text": "2024_B_U28_0404"
+  },
+  {
+    "objectID": "figures.html#2024-b-u29-0319",
+    "href": "figures.html#2024-b-u29-0319",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_U29_0319",
+    "text": "2024_B_U29_0319"
+  },
+  {
+    "objectID": "figures.html#2024-b-u29-0804",
+    "href": "figures.html#2024-b-u29-0804",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_U29_0804",
+    "text": "2024_B_U29_0804"
+  },
+  {
+    "objectID": "figures.html#2024-b-u29-1216",
+    "href": "figures.html#2024-b-u29-1216",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_U29_1216",
+    "text": "2024_B_U29_1216"
+  },
+  {
+    "objectID": "figures.html#2024-b-v18-0216",
+    "href": "figures.html#2024-b-v18-0216",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_V18_0216",
+    "text": "2024_B_V18_0216"
+  },
+  {
+    "objectID": "figures.html#2024-b-v18-0704",
+    "href": "figures.html#2024-b-v18-0704",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_V18_0704",
+    "text": "2024_B_V18_0704"
+  },
+  {
+    "objectID": "figures.html#2024-b-v18-0714",
+    "href": "figures.html#2024-b-v18-0714",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_V18_0714",
+    "text": "2024_B_V18_0714"
+  },
+  {
+    "objectID": "figures.html#2024-b-v19-0217",
+    "href": "figures.html#2024-b-v19-0217",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_V19_0217",
+    "text": "2024_B_V19_0217"
+  },
+  {
+    "objectID": "figures.html#2024-b-v19-0503",
+    "href": "figures.html#2024-b-v19-0503",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_V19_0503",
+    "text": "2024_B_V19_0503"
+  },
+  {
+    "objectID": "figures.html#2024-b-v22-0317",
+    "href": "figures.html#2024-b-v22-0317",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_V22_0317",
+    "text": "2024_B_V22_0317"
+  },
+  {
+    "objectID": "figures.html#2024-b-v22-0510",
+    "href": "figures.html#2024-b-v22-0510",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_V22_0510",
+    "text": "2024_B_V22_0510"
+  },
+  {
+    "objectID": "figures.html#2024-b-v22-0517",
+    "href": "figures.html#2024-b-v22-0517",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_V22_0517",
+    "text": "2024_B_V22_0517"
+  },
+  {
+    "objectID": "figures.html#2024-b-v22-0901",
+    "href": "figures.html#2024-b-v22-0901",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_V22_0901",
+    "text": "2024_B_V22_0901"
+  },
+  {
+    "objectID": "figures.html#2024-b-v22-1008",
+    "href": "figures.html#2024-b-v22-1008",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_V22_1008",
+    "text": "2024_B_V22_1008"
+  },
+  {
+    "objectID": "figures.html#2024-b-v22-1803",
+    "href": "figures.html#2024-b-v22-1803",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_V22_1803",
+    "text": "2024_B_V22_1803"
+  },
+  {
+    "objectID": "figures.html#2024-b-v23-0416",
+    "href": "figures.html#2024-b-v23-0416",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_V23_0416",
+    "text": "2024_B_V23_0416"
+  },
+  {
+    "objectID": "figures.html#2024-b-v23-0809",
+    "href": "figures.html#2024-b-v23-0809",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_V23_0809",
+    "text": "2024_B_V23_0809"
+  },
+  {
+    "objectID": "figures.html#2024-b-v24-1105",
+    "href": "figures.html#2024-b-v24-1105",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_V24_1105",
+    "text": "2024_B_V24_1105"
+  },
+  {
+    "objectID": "figures.html#2024-b-v24-1312",
+    "href": "figures.html#2024-b-v24-1312",
+    "title": "TSQ Structural Figures",
+    "section": "2024_B_V24_1312",
+    "text": "2024_B_V24_1312"
+  }
+]

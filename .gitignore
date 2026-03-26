@@ -8,17 +8,4 @@
 /data/figures
 /data/processed
 /data/raw
-/public
 /_targets
-
-/data/figures
-/data/processed
-/data/raw
-/public
-/_targets
-
-.Rhistory
-.Rprofile
-/data
-/_targets
-/public
