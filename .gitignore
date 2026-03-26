@@ -1,2 +1,8 @@
 /.quarto/
 **/*.quarto_ipynb
+
+.Rhistory
+.Rprofile
+/data
+/_targets
+/public
