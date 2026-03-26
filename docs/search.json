@@ -7,6 +7,55 @@
     "text": "{targets} Pipeline structure\n\ntargets::tar_visnetwork(\n  outdated = FALSE,\n  label = c(\"time\", \"size\")\n  )\n\n\n\n\n\n\n\nTSQ Structural data\n\nstructure &lt;- targets::tar_read(structure_complete) |&gt;\n  dplyr::select(-dplyr::contains(\"_plot\"))\n\nDT::datatable(structure, filter = \"top\")"
   },
   {
+    "objectID": "data_protocol.html",
+    "href": "data_protocol.html",
+    "title": "TSQ structural data protocol",
+    "section": "",
+    "text": "This is the protocol for the collection and processing of the structural data of the tree species quartets (TSQs) collected via personal laser scanning (PLS). This data has been collected in the summers of 2023 and 2024 by Tama Ray, Tobias Käcks, and Alexander Täuber. The structural data analysis including this repository and documentation was created by Alexander Täuber. In case of questions please email me, or use this repositories Issues.\nThis website consists of three pages which you can access with the navigation pane at the top: - The page you are on right now is a detailed description of the data collection process in the field - The Analysis Pipeline page presents the structure of the {targets} pipeline used to generate the data. - The Structural Plots page is a collection of plots describing the structure of each individual TSQ.\nTo inspect the dataset you can open this page on this repos website and scroll down to the datatable. To download the full dataset yourself please head over to the BEFChina Data portal"
+  },
+  {
+    "objectID": "data_protocol.html#general-info",
+    "href": "data_protocol.html#general-info",
+    "title": "TSQ structural data protocol",
+    "section": "2.1 General info",
+    "text": "2.1 General info\nThe data collected are point clouds gathered via light detection and ranging (LiDAR). For this a ZEB Horizon RT personal laser scanner of the manufacturer GeoSLAM was used. The device was equipped with a small action camera, which recorded video during each scan (.mp4). The video files of the scans on Site A (2023) are only partly available, as some were lost due to data corruption. Those of Site B (2024) are fully available. No registration marks were used in either year. While this could have improved the speed of the registration and made the tree/shrub labelling much easier, it also drastically reduced the time-to-scan of each TSQ (no setting up of targets). The time-to-scan was prioritized in this campaign due to limited fieldwork time."
+  },
+  {
+    "objectID": "data_protocol.html#scanning-track",
+    "href": "data_protocol.html#scanning-track",
+    "title": "TSQ structural data protocol",
+    "section": "2.2 Scanning Track",
+    "text": "2.2 Scanning Track\nIn both years the scanner was carried through the TSQ by hand as intended for a PLS. The walked route (from here on referred to as “track”) is recorded in three dimensions (3D). The track was not consistent across TSQs because terrain was partly difficult to traverse safely. Additionally it made sense to adapt the track to the canopy structure of the focal trees/shrubs in order to achieve an optimal point cloud density. The tracks are available as polygone file formats (.ply)."
+  },
+  {
+    "objectID": "data_protocol.html#compass-alignment",
+    "href": "data_protocol.html#compass-alignment",
+    "title": "TSQ structural data protocol",
+    "section": "2.3 Compass alignment",
+    "text": "2.3 Compass alignment\nThe ZEB-Horizon does not have an internal compass. For Site A (2023) the scans were not compass-oriented. For Site B (2024) the scans have been manually compass-oriented. This was achieved by placing a compass parralelly to the PLS-scanner at the beginning of each scan, in view of the action camera. With this information the scans of Site A could be compass-oriented to a precision of roughly 10°."
+  },
+  {
+    "objectID": "data_protocol.html#raw-data-extraction",
+    "href": "data_protocol.html#raw-data-extraction",
+    "title": "TSQ structural data protocol",
+    "section": "3.1 Raw data extraction",
+    "text": "3.1 Raw data extraction\nThe ZEB-Horizon is equipped with a data logger that was read out after each field day. For this and the point cloud extraction the software GeoSLAM Hub was utilized. Here, the raw scan was registered with the track information. The resulting point clouds were inspected roughly to determine if a re-scan was necessary on each afternoon/evening of the same day. In the same software also, we exported the point clouds in .laz format and the tracks in .ply format. The latter were exported with a RGB field containing info on the track time. This way each track’s direction is visible via the colour."
+  },
+  {
+    "objectID": "data_protocol.html#tsq-treeshrub-labelling",
+    "href": "data_protocol.html#tsq-treeshrub-labelling",
+    "title": "TSQ structural data protocol",
+    "section": "3.2 TSQ tree/shrub labelling",
+    "text": "3.2 TSQ tree/shrub labelling\nTo make automatic extraction of structural parameters possible and simplify later analyses, the TSQ tree and shrub positions were labelled manually within each scan. For this the software CloudCompare was used. Specifically, we used the point clouds, tracks, and videos to manually “find” the trees and shrubs of each TSQ in the respective scan. We then selected a point at the central base of each existing tree/shrub. We also did this for dead trees or shrubs. On control TSQs without shrubs and all other TSQs a “center” point was selected on the ground, marking where a shrub would theoretically stand. In case of missing trees, no point was selected. We then saved the selected points in a seperate .txt file with the following format:\nT22_0704_tree1_ElGl,-0.699999988079,0.180000007153,0.419999986887\nT22_0805_tree3_CaFa,0.209999993443,1.47000002861,0.680000007153\nT22_0804_tree4_ElGl,0.560000002384,0.259999990463,0.680000007153\nT22_0704_shrub_DiBu,-0.070000000298,0.759999990463,0.490000009537\nT22_0704_center,-0.070000000298,0.759999990463,0.490000009537\nT22_0704_north,-0.070000000298,0.759999990463,0.490000009537\nThe “north” (or other cardinal direction) point marks a point that together with the “center” point will form a vector describing the respective compass-direction."
+  },
+  {
+    "objectID": "data_protocol.html#digital-processing-of-point-clouds",
+    "href": "data_protocol.html#digital-processing-of-point-clouds",
+    "title": "TSQ structural data protocol",
+    "section": "3.3 Digital processing of point clouds",
+    "text": "3.3 Digital processing of point clouds\nThe digital processing of point clouds was performed using an automated pipeline built with the R {targets} package. The main steps are:\n\nParameter Setup: All processing parameters (e.g., voxel size, DTM resolution, filtering thresholds) are defined centrally for reproducibility. For the used values please refer to the _targets.R file\nRaw Data Listing: The pipeline automatically detects all raw point cloud (.laz) and annotation (.txt) files.\nManifest Creation: A manifest table is generated, linking each scan with its metadata and annotation files.\nGrouping: Data are grouped by scan for parallelized processing.\nDTM Extraction: For each scan, a digital terrain model (DTM) is extracted using the provided parameters.\nCloud Preprocessing: The raw clouds are preprocessed in the following way:\n\n\nIf applicable the clouds are North-aligned to make Aspect extraction possible\nThe clouds are clipped to the defined local neighbourhood dimensions\nStatistical outlier filtering is performed\nHeight normalization is performed\nPoints at the ground are clipped up to a predefined height (Removing the influence of ground- and ground-vegetation points)\nPreprocessed local neighbourhood clouds are saved\nThen the clouds are again clipped to the TSQ dimensions and saved\n\n\nTSQ Cloud Preparation: Subsets of the clouds corresponding to each TSQ are extracted.\nStructural Computation: Structural metrics are computed for both the “ln_clouds” and “tsq_clouds”. The following parameters are extracted:\n\n\nEffective number of layers (ENL0, 1, 2)\nBox dimension\nCanopy stats: Maximum, Mean, SD, CV, Gini-Index of the Canopy heights\nCanopy openness in % For the extraction of the Canopy stats and openness the clouds are rasterized to a pre-defined cell dimension. From the highest point in each cell the stats are calculated\n\n\nResult Aggregation: Results are joined into a single table, exported as a CSV file.\nPlot Generation: Summary plots are generated for each TSQ.\nAutomated Reporting: The entire workflow, is rendered into this Website."
+  },
+  {
     "objectID": "structural_figures.html#index",
     "href": "structural_figures.html#index",
     "title": "TSQ Structural Figures",
