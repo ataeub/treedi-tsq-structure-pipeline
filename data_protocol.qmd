@@ -24,18 +24,22 @@ execute:
 This is the protocol for the collection and processing of the **structural data** of the **tree species quartets (TSQs)** collected via personal laser scanning (PLS).
 This data has been collected in the summers of 2023 and 2024 by **Tama Ray**, **Tobias Käcks**, and **Alexander Täuber**.
 The structural data analysis including this repository and documentation was created by Alexander Täuber.
-In case of questions please [email](mailto:alexander.taeuber@idiv.de) me, or use this repositories [Issues]().
+In case of questions please [email](mailto:alexander.taeuber@idiv.de) me, or use this repositories [Issues](https://github.com/ataeub/treedi-tsq-structure-pipeline/issues).
 
-# Data summary
+This website consists of three pages which you can access with the navigation pane at the top:
+- The page you are on right now is a detailed description of the data collection process in the field
+- The [Analysis Pipeline](https://ataeub.github.io/treedi-tsq-structure-pipeline/structural_analysis.html) page presents the structure of the [`{targets}`](https://books.ropensci.org/targets/) pipeline used to generate the data.
+- The [Structural Plots](https://ataeub.github.io/treedi-tsq-structure-pipeline/figures.html) page is a collection of plots describing the structure of each individual TSQ. 
 
-**Insert small table with available data**
+To inspect the dataset you can open [this](https://ataeub.github.io/treedi-tsq-structure-pipeline/structural_analysis.html) page on this repos website and scroll down to the datatable.
+To download the full dataset yourself please head over to the [BEFChina Data portal]()
 
 # Raw data collection
 
 The raw data for the TSQs of Site A was collected in August and September of 2023 by Tama Ray and Tobias Käcks.
 The data of Site B was collected in August of 2024 by Alexander Täuber.
 
-In total **X** scans are available for ....
+In total, structural is available for 129 TSQs on Site A and 131 on Site B.
 
 ## General info
 
@@ -97,4 +101,33 @@ T22_0704_north,-0.070000000298,0.759999990463,0.490000009537
 
 The "north" (or other cardinal direction) point marks a point that together with the "center" point will form a vector describing the respective compass-direction.
 
-# Structural parameter extraction
+## Digital processing of point clouds
+
+The digital processing of point clouds was performed using an automated pipeline built with the R `{targets}` package. The main steps are:
+
+1. **Parameter Setup:** All processing parameters (e.g., voxel size, DTM resolution, filtering thresholds) are defined centrally for reproducibility. For the used values please refer to the `_targets.R` file
+2. **Raw Data Listing:** The pipeline automatically detects all raw point cloud (`.laz`) and annotation (`.txt`) files.
+3. **Manifest Creation:** A manifest table is generated, linking each scan with its metadata and annotation files.
+4. **Grouping:** Data are grouped by scan for parallelized processing.
+5. **DTM Extraction:** For each scan, a digital terrain model (DTM) is extracted using the provided parameters.
+6. **Cloud Preprocessing:** The raw clouds are preprocessed in the following way:
+  - If applicable the clouds are North-aligned to make Aspect extraction possible
+  - The clouds are clipped to the defined local neighbourhood dimensions
+  - Statistical outlier filtering is performed
+  - Height normalization is performed
+  - Points at the ground are clipped up to a predefined height (Removing the influence of ground- and ground-vegetation points)
+  - Preprocessed local neighbourhood clouds are saved
+  - Then the clouds are again clipped to the TSQ dimensions and saved
+7. **TSQ Cloud Preparation:** Subsets of the clouds corresponding to each TSQ are extracted.
+8. **Structural Computation:** Structural metrics are computed for both the "ln_clouds" and "tsq_clouds". The following parameters are extracted:
+  - [Effective number of layers](https://doi.org/10.1016/j.foreco.2016.09.003) (ENL0, 1, 2)
+  - [Box dimension](https://doi.org/10.1002/ece3.3661)
+  - Canopy stats: Maximum, Mean, SD, CV, Gini-Index of the Canopy heights
+  - Canopy openness in %
+  For the extraction of the Canopy stats and openness the clouds are rasterized to a pre-defined cell dimension.
+  From the highest point in each cell the stats are calculated
+9. **Result Aggregation:** Results are joined into a single table, exported as a CSV file.
+10. **Plot Generation:** Summary plots are generated for each TSQ.
+11. **Automated Reporting:** The entire workflow, is rendered into this Website.
+
+
