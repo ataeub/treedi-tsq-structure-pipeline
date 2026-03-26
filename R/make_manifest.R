@@ -94,8 +94,11 @@ make_manifest <- function(
     dplyr::pull(cloud_path)
   if (length(missing_pois) > 0) {
     warning(
-      "The following cloud files don't have POI files and will be excluded:",
-      missing_pois
+      paste(
+        "The following cloud files don't have POI files and will be excluded:",
+        paste(missing_pois, collapse = "\n"),
+        sep = "\n"
+      )
     )
     manifest <- manifest |>
       dplyr::filter(!is.na(cloud_path) & !is.na(poi_path))
