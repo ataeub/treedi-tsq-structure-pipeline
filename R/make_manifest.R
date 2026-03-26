@@ -34,7 +34,7 @@ make_manifest <- function(
       raw_dir = fs::path_dir(cloud_path),
       basename = fs::path_ext_remove(fs::path_file(cloud_path)),
       year = stringr::str_extract(basename, "^\\d{4}(?=-)"),
-      site = stringr::str_extract(basename, "(?<=_)[A-Z](?=_)"),
+      site = dplyr::if_else(year == "2023", "A", "B"),
       plot = stringr::str_extract(basename, "[A-Z]\\d+(?=_\\d{4}$)"),
       tsq_pos = stringr::str_extract(basename, "\\d{4}$"),
       tsq_id = paste0(plot, "_", tsq_pos),
