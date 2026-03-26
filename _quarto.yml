@@ -1,6 +1,6 @@
 project:
   type: website
-  output-dir: public
+  output-dir: docs
   execute-dir: project
   render:
     - "*.qmd"
@@ -10,6 +10,8 @@ website:
   title: "TreeDì-P1G - TSQ Structural data protocol"
   navbar:
     left:
+      - href: data_protocol.qmd
+        text: Data protocol
       - href: structural_analysis.qmd
         text: Analysis Pipeline
       - href: figures.qmd
