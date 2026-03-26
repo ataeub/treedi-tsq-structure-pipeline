@@ -1,0 +1,9 @@
+pages:
+  stage: deploy
+  script:
+    - quarto render my_report.qmd --output-dir public
+  artifacts:
+    paths:
+      - public
+  only:
+    - main
