@@ -11,6 +11,7 @@ set_parameters <- function(
   enll = 1,
   chsr = 0.1,
   chsrnd = 1L,
+  opnsrnd = 1L,
   enlrnd = 3L,
   bdrnd = 4L,
   slprnd = 1L,
@@ -30,6 +31,7 @@ set_parameters <- function(
   #' @param enll Effective number of layers (ENL) layer size. Default: `1`.
   #' @param chsr Raster cell dimension for canopy height statistics. Default: `0.1`.
   #' @param chsrnd Digits to round for canopy height statistics. Default: `1L`.
+  #' @param opnsrnd Digits to round for canopy openness. Default: `1L`.
   #' @param enlrnd Digits to round for ENL. Default: `3L`.
   #' @param bdrnd Digits to round for box dimension. Default: `4L`.
   #' @param slprnd Digits to round for slope. Default: `1L`.
@@ -41,7 +43,7 @@ set_parameters <- function(
   if (!all(sapply(parameters, is.numeric))) {
     stop("All parameters must be numeric!")
   }
-  rnd_params <- c("chsrnd", "enlrnd", "bdimrnd", "slprnd", "asprnd")
+  rnd_params <- c("chsrnd", "enlrnd", "bdimrnd", "slprnd", "asprnd", "opnsrnd")
   poscheck_excluded <- c("lc", rnd_params)
   if (!all(sapply(parameters[!names(parameters) %in% poscheck_excluded], `>`, 0))) {
     stop("All parameters except lc must be positive!")
