@@ -32,7 +32,7 @@ This website consists of three pages which you can access with the navigation pa
 - The [Structural Plots](https://ataeub.github.io/treedi-tsq-structure-pipeline/figures.html) page is a collection of plots describing the structure of each individual TSQ. 
 
 To inspect the dataset you can open [this](https://ataeub.github.io/treedi-tsq-structure-pipeline/structural_analysis.html) page on this repos website and scroll down to the datatable.
-To download the full dataset yourself please head over to the [BEFChina Data portal]()
+To access the full dataset yourself please head over to the [BEFChina Data portal](https://data.botanik.uni-halle.de/bef-china/datasets/766).
 
 # Raw data collection
 
