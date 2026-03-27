@@ -16,6 +16,9 @@ website:
         text: Analysis Pipeline
       - href: figures.qmd
         text: Structural Plots
+    right: 
+      - icon: github
+        href: https://github.com/ataeub/treedi-tsq-structure-pipeline
 
 format:
   html:
